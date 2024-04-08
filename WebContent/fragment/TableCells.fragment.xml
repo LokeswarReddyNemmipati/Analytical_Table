@@ -1,0 +1,284 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:build="sap.build"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:navpopover="sap.ui.comp.navpopover"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:smc="sap.ui.comp.smartmicrochart" xmlns:table="sap.ui.table"
+	xmlns:smartMultiInput="sap.ui.comp.smartmultiinput"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+
+
+	<template:if
+		test="{= ${dataField>Value/Path} === 'edtst' }">
+		<template:then>
+			<!-- <core:Fragment
+				fragmentName="zvui.work.fragment.EditingStatusColumn" type="XML" /> -->
+			<ObjectStatus
+	    			icon="{parts: [{path: 'listEntitySet>'}, {path: 'columnModel>/presentRoute'}],formatter: 'zvui.work.controller.AnnotationHelper.getEditStatusIcon'}" >
+    </ObjectStatus>
+		</template:then>
+		<template:else>
+
+			<template:with path="dataField>Value"
+				helper="sap.ui.model.odata.AnnotationHelper.resolvePath"
+				var="dataFieldValue">
+
+				<template:with path="dataField>Target"
+					helper="sap.ui.model.odata.AnnotationHelper.resolvePath"
+					var="dataFieldTarget">
+
+					<template:if
+						test="{= ${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataField' &amp;&amp; (${dataField>Value/Path} === ${targetColumn>})}">
+						<template:then>
+							<VBox> <!-- class="sapMTableContentMargin"> -->
+								<items>
+									<template:if
+										test="{path: 'dataFieldValue>', formatter: 'zvui.work.controller.AnnotationHelper.isSmartLink'}">
+										<template:then>
+											<navpopover:SmartLink
+												class="sapSmartTemplatesListReportFirstText"
+												text="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}, {path: 'entityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getColumnCellFirstText'}"
+												semanticObject="{path: 'dataFieldValue>com.sap.vocabularies.Common.v1.SemanticObject', formatter: 'sap.ui.model.odata.AnnotationHelper.format'}"
+												fieldName="{dataFieldValue>name}"
+												additionalSemanticObjects="{path: 'dataFieldValue>', formatter: 'zvui.work.controller.AnnotationHelper.getAdditionalSemanticObjects'}"
+												emphasized="true"
+												visible="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}, {path: 'entityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getColumnCellFirstTextVisibility'}"
+												navigationTargetsObtained="._templateEventHandlers.onSemanticObjectLinkNavigationTargetObtainedSmartLink"
+												ariaLabelledBy="{columnId>id}">
+												<navpopover:customData>
+													<core:CustomData key="LinkDescr"
+														value="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}, {path: 'entityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getColumnCellSecondText'}" />
+												</navpopover:customData>
+											</navpopover:SmartLink>
+										</template:then>
+										<template:else>
+											<ObjectIdentifier
+												title="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}, {path: 'entityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getColumnCellFirstText'}"
+												visible="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}, {path: 'entityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getColumnCellFirstTextVisibility'}"
+												ariaLabelledBy="{columnId>id}" />
+										</template:else>
+									</template:if>
+									<FormattedText
+										htmlText="&lt;em&gt;{path:'i18n>NEW_OBJECT', formatter:'jQuery.sap.encodeHTML'}&lt;/em&gt;"
+										visible="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}, {path: 'entityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getHeaderVisibility'}" />
+									<Text class="sapUiTinyMarginTop"  wrapping="false"
+										text="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}, {path: 'entityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getColumnCellSecondText'}"
+										visible="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}, {path: 'entityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getColumnCellSecondTextVisibility'}" />
+									<!-- <core:Fragment
+										fragmentName="zvui.work.fragment.LockInfoBox" type="XML" />
+									 -->
+								</items>
+							</VBox>
+						</template:then>
+						<template:elseif
+							test="{= (${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataFieldWithIntentBasedNavigation')}">
+							<!-- template for DataFieldWithIntentBasedNavigation -->
+							<Link
+								text="{parts: [{path: 'dataField>'}, {path: 'listEntitySet>'}], formatter: 'zvui.work.controller.AnnotationHelper.getLinkTextForDFwithIBN'}"
+								press="onTableNavigationLinkClick" wrapping="false">
+								<customData>
+									<core:CustomData key="FieldName"
+										value="{dataField>Value/Path}" />
+								</customData>
+							</Link>
+						</template:elseif>
+						<template:elseif
+						test="{= (${dataField>RecordType} === 'vui.bodc.Hyperlink')}">
+							<template:if test="{= ${dataField>Icon/Path} !== ''}">
+								<template:then>
+	 								<Button icon="{dataField>Icon/Path}" press="onTableNavigationLinkClick"
+	 									visible="{= ${path:'dataField>HREF',formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldValue'} !== ''}"
+	 									type="Transparent">
+										<customData>
+											<core:CustomData key="HREF"
+													value="{dataField>HREF/Path}" />
+											<core:CustomData key="ICON"
+													value="true" />	
+										</customData>		
+									</Button>
+								</template:then>
+								<template:else>
+									<Link
+										text="{parts: [{path: 'dataField>'}, {path: 'listEntitySet>'}], formatter: 'zvui.work.controller.AnnotationHelper.getLinkTextForDFwithIBN'}"
+										href="{path:'dataField>HREF',formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldValue'}"
+										press="onTableNavigationLinkClick" wrapping="false">
+										<customData>
+											<core:CustomData key="FieldName"
+												value="{dataField>Value/Path}" />
+											<core:CustomData key="HREF"
+												value="{dataField>HREF/Path}" />
+										</customData>
+									</Link>
+								</template:else>
+							</template:if>
+						</template:elseif>
+						<template:elseif
+							test="{= (${dataField>RecordType} === 'vui.bodc.DataFieldWithDrilldownNavigation')}">
+							<Link
+								text="{parts: [{path: 'dataField>'}, {path: 'listEntitySet>'}], formatter: 'zvui.work.controller.AnnotationHelper.getLinkTextForDFwithIBN'}"
+								press="onTableDrilldownNavigationClick" wrapping="false">
+								<customData>
+									<core:CustomData key="FieldName"
+										value="{dataField>Value/Path}" />
+								</customData>
+							</Link>
+						</template:elseif>
+						<template:else>
+							<template:if
+								test="{= ${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataField' &amp;&amp; !${path: 'dataFieldValue>', formatter: 'zvui.work.controller.AnnotationHelper.isImageUrl'}}">
+								<template:if
+									test="{parts: [{path: 'listEntitySet>'}, {path: 'dataField>'}], formatter: 'zvui.work.controller.AnnotationHelper.checkMultiplicityForDataFieldAssociation'}">
+									<template:then>
+										<template:if test="{= ${dataFieldValue>sap:unit}}">  <!-- &amp;&amp; ${dataField>ManualUnitField} -->
+											<template:then>
+												<template:if test="{path: 'dataFieldValue>', formatter: 'zvui.work.controller.AnnotationHelper.getUnitFieldDisplay'}">
+													<template:then>														
+														<ObjectNumber
+															number="{path: 'dataField>Value', formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldValue'}"
+															numberUnit="{path: 'dataFieldValue>sap:unit', formatter: 'zvui.work.controller.AnnotationHelper.getUnitFieldValue'}"
+															emphasized="false"
+															state="None"
+															/>
+													</template:then>
+													<template:else>												
+														<HBox justifyContent="End" alignItems="Center">
+															<items>
+																<!-- <smartField:SmartField
+																	visible="{= ${path: 'dataField>com.sap.vocabularies.UI.v1.Hidden'} ? ${path: 'dataField>', formatter: 'zvui.work.controller.AnnotationHelper.getBindingForHiddenPath'} : true}"
+																	value="{path: 'dataField>Value', formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldValue'}"
+																	url="{= ${dataField>Url} ? ${path: 'dataField>Url', formatter: 'sap.ui.model.odata.AnnotationHelper.format'} : ''}"
+																	custom:multiLineSettings="{width: '100%', rows: 4}"
+																	clientSideMandatoryCheck="false"
+																	textLabel="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}], formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldLabel'}"
+																	textAlign="Right"
+																	fetchValueListReadOnly="true" 
+																	contextEditable="{parts: [{path: 'listEntitySet>'},{path: 'facet>'}, {path: 'columnModel>/entities'},{path: 'listEntityType>'},{path: 'columnModel>/ShowDetailDetail'}], formatter: 'zvui.work.controller.AnnotationHelper.isSmartTableEditable'}"
+																	editable="{ui>/editable}"
+																	wrapping="false"
+																	ariaLabelledBy="{columnId>id}"
+																	change="onTableFieldChange"
+																	controlContext="{parts: [{path: 'columnModel>/entities'},{path: 'listEntityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getSmartTableContextType'}"
+																	build:metadata="#pattern:FormElement;staticProp:label:Label:\{dataField>Value@@sap:label\};prop:virtualProp1:Value:\{dataField>Value\};prop:virtualProp2:Url:\{dataField>Url\};staticProp:nullable:Nullable:\{dataField>Value@@sap:nullable\};prop:currency:Currency:\{dataField>Value@@Org.OData.Measures.V1.ISOCurrency\};f4Edit:\{dataField>Value\}">
+																	editable="false"
+																	contextEditable="false" 
+																		contextEditable="{ui>/editable}" editable="{ui>/editable}"
+						
+																	<smartField:configuration>
+																		<smartField:Configuration
+																			displayBehaviour="{parts: [{path: 'dataField>'}, {path: 'listEntitySet>'}, {path: 'dataFieldTarget>Data'}], formatter: 'zvui.work.controller.AnnotationHelper.getTextArrangementForSCFields'}" />
+																	</smartField:configuration>
+						
+						
+																	<template:if test="{= ${dataField>Criticality} }">
+																		<smartField:controlProposal>
+																			<smartField:ControlProposal>
+																				<smartField:objectStatus>
+																					<smartField:ObjectStatus
+																						criticality="{path: 'dataField>Criticality', formatter: 'sap.ui.model.odata.AnnotationHelper.simplePath'}"
+																						criticalityRepresentationType="{= (${dataField>CriticalityRepresentation/EnumMember} === 'com.sap.vocabularies.UI.v1.CriticalityRepresentationType/WithoutIcon') ? 'WithoutIcon' : 'WithIcon'}"
+																						build:metadata="#pattern:FormElement;prop:criticality:Criticality;"
+																						ariaLabelledBy="{columnId>id}" />
+																				</smartField:objectStatus>
+																			</smartField:ControlProposal>
+																		</smartField:controlProposal>												
+																	</template:if>
+																</smartField:SmartField>	 -->	
+																<Text  wrapping="false" text="{parts: [{path: 'listEntityType>'},{path: 'dataField>'}], formatter: 'zvui.work.controller.AnnotationHelper.formatValue'}"/>												
+																<template:with path="dataFieldValue>sap:unit" helper="sap.ui.model.odata.AnnotationHelper.resolvePath"
+																var="unitFieldValue">
+																<!-- <smartField:SmartField
+																		visible="{= ${path: 'dataField>com.sap.vocabularies.UI.v1.Hidden'} ? ${path: 'dataField>', formatter: 'zvui.work.controller.AnnotationHelper.getBindingForHiddenPath'} : true}"
+																		value="{path: 'dataFieldValue>sap:unit', formatter: 'zvui.work.controller.AnnotationHelper.getUnitFieldValue'}"
+																		custom:multiLineSettings="{width: '100%', rows: 4}"
+																		clientSideMandatoryCheck="false"
+																		textLabel="{parts: [{path: 'unitFieldValue>'}, {path: 'unitFieldValue>'}], formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldLabel'}"
+																		textAlign="Begin"
+																		fetchValueListReadOnly="true" 
+																		contextEditable="{parts: [{path: 'listEntitySet>'},{path: 'facet>'}, {path: 'columnModel>/entities'},{path: 'listEntityType>'},{path: 'columnModel>/ShowDetailDetail'}], formatter: 'zvui.work.controller.AnnotationHelper.isSmartTableEditable'}"
+																		editable="{ui>/editable}"
+																		ariaLabelledBy="{columnId>id}"
+																		controlContext="{parts: [{path: 'columnModel>/entities'},{path: 'listEntityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getSmartTableContextType'}"
+																		class="UnitFieldMarginLeft"
+																		wrapping="false"
+																		change="onTableFieldChange"
+																		build:metadata="#pattern:FormElement;staticProp:label:Label:\{unitFieldValue>sap:label\};prop:virtualProp1:Value:\{dataFieldValue>sap:unit\};prop:virtualProp2:Url:\{unitFieldValue>Url\};staticProp:nullable:Nullable:\{unitFieldValue>sap:nullable\};prop:currency:Currency:\{unitFieldValue>Org.OData.Measures.V1.ISOCurrency\};f4Edit:\{dataFieldValue>sap:unit\}">
+																	</smartField:SmartField> -->
+																	<Text  wrapping="false" text="{path: 'dataFieldValue>sap:unit', formatter: 'zvui.work.controller.AnnotationHelper.getUnitFieldValue'}" 
+																	 class="UnitFieldMarginLeft"/>
+																</template:with>					
+															</items>
+														</HBox>
+													</template:else>
+												</template:if>
+											</template:then>
+											<template:else>											
+										<!-- <smartField:SmartField
+											visible="{= ${path: 'dataField>com.sap.vocabularies.UI.v1.Hidden'} ? ${path: 'dataField>', formatter: 'zvui.work.controller.AnnotationHelper.getBindingForHiddenPath'} : true}"
+											value="{path: 'dataField>Value', formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldValue'}"
+											url="{= ${dataField>Url} ? ${path: 'dataField>Url', formatter: 'sap.ui.model.odata.AnnotationHelper.format'} : ''}"
+											custom:multiLineSettings="{width: '100%', rows: 4}"
+											clientSideMandatoryCheck="false"
+											textLabel="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}], formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldLabel'}"
+											fetchValueListReadOnly="true" 
+											contextEditable="{parts: [{path: 'listEntitySet>'},{path: 'facet>'}, {path: 'columnModel>/entities'},{path: 'listEntityType>'},{path: 'columnModel>/ShowDetailDetail'}], formatter: 'zvui.work.controller.AnnotationHelper.isSmartTableEditable'}"
+											editable="{ui>/editable}"
+											ariaLabelledBy="{columnId>id}"
+											wrapping="false"
+											change="onTableFieldChange"
+											controlContext="{parts: [{path: 'columnModel>/entities'},{path: 'listEntityType>'}], formatter: 'zvui.work.controller.AnnotationHelper.getSmartTableContextType'}"
+											build:metadata="#pattern:FormElement;staticProp:label:Label:\{dataField>Value@@sap:label\};prop:virtualProp1:Value:\{dataField>Value\};prop:virtualProp2:Url:\{dataField>Url\};staticProp:nullable:Nullable:\{dataField>Value@@sap:nullable\};prop:currency:Currency:\{dataField>Value@@Org.OData.Measures.V1.ISOCurrency\};f4Edit:\{dataField>Value\}">
+											editable="false"
+											contextEditable="false" 
+												contextEditable="{ui>/editable}" editable="{ui>/editable}"
+
+											<smartField:configuration>
+												<smartField:Configuration
+													displayBehaviour="{parts: [{path: 'dataField>'}, {path: 'listEntitySet>'}, {path: 'dataFieldTarget>Data'}], formatter: 'zvui.work.controller.AnnotationHelper.getTextArrangementForSCFields'}" />
+											</smartField:configuration>
+
+
+											<template:if test="{= ${dataField>Criticality} }">
+												<smartField:controlProposal>
+													<smartField:ControlProposal>
+														<smartField:objectStatus>
+															<smartField:ObjectStatus
+																criticality="{path: 'dataField>Criticality', formatter: 'sap.ui.model.odata.AnnotationHelper.simplePath'}"
+																criticalityRepresentationType="{= (${dataField>CriticalityRepresentation/EnumMember} === 'com.sap.vocabularies.UI.v1.CriticalityRepresentationType/WithoutIcon') ? 'WithoutIcon' : 'WithIcon'}"
+																build:metadata="#pattern:FormElement;prop:criticality:Criticality;"
+																ariaLabelledBy="{columnId>id}" />
+														</smartField:objectStatus>
+													</smartField:ControlProposal>
+												</smartField:controlProposal>												
+											</template:if>
+										</smartField:SmartField> -->
+											<template:if test="{= ${dataField>Criticality}}">
+												<template:then>
+													<ObjectStatus class="sapUiSmallMarginBottom"
+														text="{parts: [{path: 'listEntityType>'},{path: 'dataField>'}], formatter: 'zvui.work.controller.AnnotationHelper.formatValue'}"
+														state="{path: 'dataField>Criticality', formatter: 'zvui.work.controller.AnnotationHelper.setObjectStatusCriticality'}" />
+												</template:then>
+												<template:else>
+													<Text  wrapping="false" text="{parts: [{path: 'listEntityType>'},{path: 'dataField>'}], formatter: 'zvui.work.controller.AnnotationHelper.formatValue'}" />
+												</template:else>
+											</template:if>
+										</template:else>
+									</template:if>
+									</template:then>
+									<template:else>
+										<!-- <smartMultiInput:SmartMultiInput visible="{= ${path: 'dataField>com.sap.vocabularies.UI.v1.Hidden'} 
+											? ${path: 'dataField>', formatter: 'zvui.work.controller.AnnotationHelper.getBindingForHiddenPath'} 
+											: true}" editable="false" clientSideMandatoryCheck="false" value="{path: 
+											'dataField>Value', formatter: 'sap.ui.model.odata.AnnotationHelper.format'}" 
+											fetchValueListReadOnly="true" ariaLabelledBy="{columnId>id}" /> -->
+										<!-- tokenUpdate="._templateEventHandlers.submitChangesForSmartMultiInput" -->
+									</template:else>
+								</template:if>
+							</template:if>
+						</template:else>
+					</template:if>
+				</template:with>
+			</template:with>
+		</template:else>
+	</template:if>
+</core:FragmentDefinition>

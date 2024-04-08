@@ -1,0 +1,457 @@
+/* Enter your custom styles here */
+.footerStyle {
+	margin: 0px
+}
+.button1 {
+  position: absolute;
+  left: 20px;
+  top: 550px;
+  z-index: 1;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  padding: 15px 32px;
+  
+}
+
+.blockLayoutWidth {
+	width : 100%;
+}
+.customCellImageBackground {
+    background-image: url("WebBannerV1.jpg");
+    max-width: 100%;
+    margin: auto;
+}
+
+.customCellImageBackground .sapUiBlockCellContent,
+.customCellImageBackground .sapUiBlockCellContent .sapMText{
+    color: #ffffff;
+}
+
+.vistexSmartTemplatesObjectPageHeaderForm {
+	margin-right: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.320rem;
+}
+
+.sapSmartTemplatesObjectPage .vistexSmartTemplatesObjectPageHeaderForm.sapMLabel:after, .sapSmartTemplatesObjectPageHeaderFormLabelNCriticcal.sapMLabel:after, .sapSmartTemplatesObjectPageHeaderFormLabel.sapMLabel:after, .sapSmartTemplatesObjectPageDataPointLabel.sapMLabel:after {
+    content: ":";
+}
+
+.noPadding, .noPadding .sapMPanelContent {
+	padding:unset;
+}
+
+.noPadding .sapMPanelContent{
+	border: none!important;
+}
+
+.matchIconTabBar .sapMITBHead {
+	margin:unset!important;
+}
+.matchIconTabBar .sapMITH .sapMITBScrollContainer{
+	margin: 0 1rem!important;
+}
+.matchIconTabBar .sapUiCompFilterBar{
+	padding: 1rem!important;
+} 
+.matchToolPath{
+	margin: 0 1rem;
+}
+.matchIconTabBar .sapMITBContent {
+	padding:unset;
+}
+
+.sapSmartTemplatesObjectPage .vistexSmartTemplatesObjectPageHeaderForm.sapMLabel:after,.sapSmartTemplatesObjectPageHeaderFormLabelNCriticcal.sapMLabel:after,.sapSmartTemplatesObjectPageHeaderFormLabel.sapMLabel:after,.sapSmartTemplatesObjectPageDataPointLabel.sapMLabel:after {
+    content: ":"
+}
+
+.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageDataPoint .sapSmartTemplatesObjectPageDataPointLabel,.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageHeaderContact .sapSmartTemplatesObjectPageHeaderContactLabel {
+    margin-bottom: 0.5rem
+}
+
+.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageHeaderContactLink,.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageDataPoint .vistexSmartTemplatesObjectPageDataPointValue .sapMText,.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageDataPoint .vistexSmartTemplatesObjectPageDataPointValue .sapMLnk,.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageDataPoint .vistexSmartTemplatesObjectPageDataPointValue .sapMText.sapUiCompSmartFieldUnit,.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageDataPoint .vistexSmartTemplatesObjectPageDataPointValue .sapMObjStatusText {
+    font-size: 1.375rem;
+    line-height: 1.5rem;
+}
+
+.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageHeaderContact .sapSmartTemplatesObjectPageHeaderContactLink,.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageDataPoint .vistexSmartTemplatesObjectPageDataPointValue .sapMText,.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageDataPoint .vistexSmartTemplatesObjectPageDataPointValue .sapMLnk,.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageDataPoint .vistexSmartTemplatesObjectPageDataPointValue .sapMText.sapUiCompSmartFieldUnit,.sapSmartTemplatesObjectPage .sapSmartTemplatesObjectPageDataPoint .vistexSmartTemplatesObjectPageDataPointValue .sapMObjStatusText {
+    font-size: 1.375rem;
+    line-height: 1.5rem;
+}
+
+.vistexSmartTemplatesObjectPageDataPointValue .sapMObjStatus { 
+	font-size: 1.375rem;
+    line-height: 1.5rem;    
+}
+.vistexSmartTemplatesObjectPageDataPointValue .sapMText{
+	font-size: 1.375rem!important;
+}
+
+
+.vistexMTableGroupFieldLabel:after{
+    content: ":";
+}
+
+.vistexNonMandatory:before {
+	content: " "
+}
+
+.dynamicSideContentHeight .sapUiDSCSpan9 {
+	/* height: 700px!important; */
+	overflow: hidden!important;
+}
+
+.dynamicSideContentHeight .sapUiDSCSpan8 {
+	/* height: 700px!important; */
+	overflow: hidden!important;
+}
+
+.dynamicSideContentHeight .sapUiDSCSpan12 {
+	/* height: 700px!important; */
+	overflow: hidden!important;
+}
+
+.dynamicSideContentHeight{
+	overflow: hidden!important;
+}
+
+/* .dscSideContent .sapUiDSCSpan3 {
+	padding-top: 8px!important;
+	    height: 700px;!important;
+}
+
+.dscSideContent .sapUiDSCSpan4 {
+	padding-top: 8px!important;
+	height: 700px;!important;
+} */
+
+
+.dscSideContent aside{
+	padding-top: 8px!important;
+}
+
+.rightMargin .sapMFlexItem{
+	margin-right: 5px!important;
+}
+
+
+
+.setGenericChartHeight {
+	width: 14rem !important;
+	height: 12rem !important;
+}
+
+.noPaddingNoBorder {
+	padding: 0rem !important;
+	border: 0rem !important;
+	background:  none!important;
+}
+
+.margintop .sapMListUl{
+	margin-top: 0.5rem
+}
+
+.toolbarBorder {
+	border: 1.4px solid #cccccc !important;
+}
+
+.setGenericChartHeight .sapMGTContent{
+	height: 215px !important;
+}
+
+.setGenericChartHeight .OneByOne{
+	height:35px;
+	
+}
+
+.setGenericChartHeight .sapMNC{
+	width: 8rem !important;
+}
+
+.setGenericChartHeight .sapMCrsl{
+	min-width: 12rem !important
+}
+.tileLayout {
+	float: left;
+}
+
+.setCarouselWidth .sapMCrsl{
+	min-width: 10rem !important;
+	width: 13rem !important;
+	height: 13rem!important;
+}
+
+.setItemWidth {
+	width: 14.5rem !important;
+}
+
+.setPaddingToCarouselContent .sapMCrsPage {
+	padding-top: 0.8rem !important;
+    padding-left: 1rem !important;
+}
+
+.setPaddingToCarouselContent{
+    border: none !important;
+}    
+
+.KPIPadding {
+	padding-right: 1.5rem !important;
+}
+
+.KPIObjPosition .sapMNCValue{
+	display: flex;
+    justify-content: center;
+}
+
+.KPIFont .sapMObjectNumber {
+	font-size: x-large !important;
+}
+
+.KPIFont .sapMObjectNumberText {
+	font-size: xxx-large !important;
+}
+.sapSmartTemplatesAnalyticalListPageVFOverflow{
+	background-color: #fff;
+    opacity: 1;
+    border-color: rgba(66,124,172,0.2);
+    font-size: .875rem;
+    border-width: 1px;
+    border-style: solid;
+    white-space: pre-line;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.VFTitlePadding .sapMTBStandard{
+	margin: 0.5rem 1.5rem 0.5rem 0rem !important;
+    width: 20rem !important;
+    border: 0!important;
+}
+
+.setLineChatHeight {
+	height: 116px!important;
+}
+
+.vistex-display-none{
+	display: none!important;
+}
+
+.sapSuiteRMC.sapSuiteRMCSizeS {
+    height: 3.5rem!important;
+    width: 3.25rem!important;
+}
+
+.UnitFieldMarginLeft{
+	margin-left: 0.2rem;
+	margin-right: 0.2rem;
+}
+.vistex-sideContent-TableTitle{
+	padding-top: 0.5rem!important;
+}
+.vistexCardFormControl, .vistexCardFormControl div{
+	padding: unset !important;
+}
+.vistexSideContent td, .vistexSideContent li{
+	background-color: #eff4f9;
+}
+.leftMarginForNumber{
+	margin-left: 0.3rem !important;
+}
+
+.vistexSideContent{
+	padding-left: 10px;
+}
+
+.setCardLabelFontSize{
+	font-size: 0.95rem !important;
+}
+.setCardValueFontSize .sapMObjectNumberText, .setCardValueFontSize .sapMObjectNumberUnit {
+    font-size: 1rem!important;
+    font-weight: bold;
+}
+.setCardObjectNumberRightMargin{
+	margin-right: 15px !important;
+}
+
+.customSmartFieldPaddingRight{
+	padding-right: 5px !important;
+}
+.vistexTextBold{
+	font-weight: bold !important;
+}
+.vistexPageSection .sapUxAPBlockContainer{
+	padding: 0.5rem 1rem 0 1rem!important;
+}
+
+.vistexResponsiveSplitter .sapUiResponsiveSplitterPaginator{
+	display:none!important;
+}
+
+.vistexResponsiveSplitterMainPanel .sapMPanelContent {
+	padding-top:unset;
+}
+
+.vistexResponsiveSplitterMainPanel  .sapMPanelContent{
+	border: none!important;
+}
+/* .vistexResponsiveSplitterMainPanel .sapMTB.sapMTBHeader-CTX{
+	height: 1.75rem;
+} */
+/* style class for making table compact ---- Start */
+.vistexCompactStyle>.sapUiTableCnt .sapUiTableContentRow, .vistexCompactStyle>.sapUiTableCnt .sapUiTableRowSelectionCell,
+.vistexCompactStyle>.sapUiTableCnt .sapUiTableRowActionCell{
+	height: 20px!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapUiTableRowSelectionHeaderCell{
+	min-height: 1rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMText, .vistexCompactStyle>.sapUiTableCnt .sapMMultiInput, 
+.vistexCompactStyle>.sapUiTableCnt .sapMLnk, .vistexCompactStyle>.sapUiTableCnt .sapMToken,
+.vistexCompactStyle>.sapUiTableCnt .sapMTokenizerIndicator{
+	font-size: 0.6875 rem!important;
+}
+/* .vistexCompactStyle>.sapUiTableCnt .sapUiTableCCnt{
+    min-height: 340px!important;
+} */
+.vistexCompactStyle>.sapUiTableCnt .sapUiSizeCompact .sapMTokenText{/* for tokens text inside multiinput */
+	font-size: x-small!important;
+	line-height: 0.6rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMTokenText{/* for tokens text inside multiinput */
+	font-size: x-small!important;
+	line-height: 0.9rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapUiSizeCompact .sapMBtnIcon{/* for button inside table cell */
+	line-height: 0.6rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMBtnIcon{/* for button inside table cell */
+	line-height: 0.6rem!important;
+}		
+.vistexCompactStyle>.sapUiTableCnt .sapMTokenizer .sapMToken{/* for token inside multiinput */
+	height: 0.9rem!important;
+	margin-top: 0rem!important;
+	margin-bottom: 1.2rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMTokenizer{/* for token inside multiinput */
+	line-height: 0.9rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMTokenizerIndicator{/* for more button inside multiinput */
+	line-height: 0.6rem!important;
+    margin-bottom: 1.1rem!important;
+    font-size: small!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMBtnInner{/* for button inside table cell */
+	height: 0.8rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMBtnContent{/* for button Text inside table cell */
+	line-height: 0.7rem!important;
+}	
+.vistexCompactStyle>.sapUiTableCnt .sapUiSizeCompact .sapMInputBase{/* for inputBox */
+	height: 0.8rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMInputBase{/* for inputBox */
+	height: 0.8rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapUiSizeCompact .sapMInputBaseContentWrapper{/* for inputBox */
+	height: 0.8rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMInputBaseContentWrapper{/* for inputBox */
+	height: 1.1rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMInputBaseInner{/* for text inside editable field */
+	    font-size: xx-small!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMInputBaseIcon{/* for icon inside f4 field */
+	line-height: 0.8rem!important;
+	font-size: x-small!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMInputBaseIconContainer{/* for icon inside f4 field */
+	margin-bottom: 3px!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMTokenIcon{/* for button 'x' in tokens in edit mode */
+	font-size: x-small!important;
+	line-height: 0.7rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapUiSizeCompact .sapMBtn { /* for button inside table cell */
+ 	height: 0.8rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapMBtnBase { /* for button inside table cell */
+ 	height: 0.8rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapUiTableColHdrCnt{/* for column name */
+	min-height: 1.2rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapUiTableCHA{/* for column name */
+	    height: 24px!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapUiTableCell .sapMLabel{/* for column name */
+	font-size: .875rem!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapUiTableSelectAllCheckBox::after{/* for selectAll checkbox */
+	bottom: calc(( 2rem - 1.4rem ) / 2)!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapUiTableHeaderDataCell{
+	padding-top: 0px;
+}
+.vistexCompactStyle .sapMInputBaseHeightMargin{
+	margin: 0!important;
+}
+.vistexCompactStyle>.sapUiTableCnt .sapUiTableTreeIcon{
+	height: 18.25px!important;
+}
+/* .vistexCompactStyle .sapUiTableHeightResizer{
+	display:none;
+} */
+/* style class for making table compact ---- End */
+.vistexHideFooterWrapper{/* for hiding footer wrapper which is disabling horizontal scroll*/
+	display: none!important;
+}
+.sapUiTableCtrlRowScroll tr{
+	cursor: pointer !important;
+}
+.addressHBox .sapMFlexItem{
+	width: 100% !important;
+}
+
+.manualMatchObjectPage .sapUiCompVarMngmt{
+	display: none !important;
+}
+
+.manualMatchObjectPage .sapUxAPObjectPageHeaderContent{
+	padding: unset !important;
+}
+.sapUxAPObjectPageWrapper{
+	height: auto !important;
+}
+.sapUiRespGrid.sapUiRespGridVSpace1>div{
+	margin-bottom: 0 !important;
+}
+.manualMatchObjectPage .sapUiCompFilterBar{
+	border-bottom: none !important;
+}
+.matchTitleObjectIdentifier .sapMObjectIdentifierTextBellow{
+	margin-top: unset !important;
+}
+.manualMatchObjectPage .sapUiRespGridHSpace0{
+	padding-top: 0.5rem !important;
+	padding-bottom: unset !important;
+}
+.manualMatchObjectPage .sapUxAPObjectPageHeaderContentItem{
+	margin-bottom: 0.5rem !important;
+}
+html, body { /* for disabling browser navigation on mouse overscroll */
+    overscroll-behavior-x: none;
+}
+.setPositionAndBgColortoCarosal .sapMCrslInner, .setPositionAndBgColortoCarosal  .sapMScrollCont{
+    background: #ffff !important;
+}
+.workspaceGridList{
+	padding-left: 1.5rem !important;
+}
+.vistexSelectedItemColor{
+	background-color: #E6E6FA !important;
+}
+.WSCardMinWidth{
+	min-height: 90px!important;
+}	

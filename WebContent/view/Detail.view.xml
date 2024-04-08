@@ -1,0 +1,13 @@
+<mvc:View controllerName="zvui.work.controller.Detail"
+		xmlns:core="sap.ui.core" 
+		xmlns:mvc="sap.ui.core.mvc" 
+		xmlns="sap.m" 
+		displayBlock="true"
+		Id="detail"
+		xmlns:html="http://www.w3.org/1999/xhtml">	
+	<Page showHeader="false" enableScrolling="false" navButtonPress="onDetailBackButton">
+	<content></content>
+	</Page>		
+	<!-- <App id="idDetailControl">
+	</App> -->
+</mvc:View>

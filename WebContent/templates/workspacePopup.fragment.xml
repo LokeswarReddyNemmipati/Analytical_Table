@@ -1,0 +1,86 @@
+<core:FragmentDefinition
+	template:require="zvui.work.controller.Helper zvui.work.controller.AnnotationHelper"
+	xmlns="sap.m" height="100%" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout" xmlns:uxap="sap.uxap"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:build="sap.build"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartList="sap.ui.comp.smartlist" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1"
+	xmlns:block="zvui.work.fragment">
+	<smartForm:SmartForm entityType="WorkspaceViewType"
+		editable="true">
+		<!-- <smartForm:layout> <layout:GridData span="L4 M4 S4" /> </smartForm:layout> -->
+		<smartForm:layout>
+			<smartForm:ColumnLayout columnsM="2"
+				columnsL="3" columnsXL="4" />
+		</smartForm:layout>
+		<smartForm:layoutData>
+			<layout:GridData />
+		</smartForm:layoutData>
+
+		<smartForm:Group>
+			<smartForm:GroupElement>
+				<smartField:SmartField value="{wspvw}" />
+			</smartForm:GroupElement>
+			<smartForm:GroupElement>
+				<smartField:SmartField value="{descr}" />
+			</smartForm:GroupElement>
+			<smartForm:GroupElement>
+				<smartField:SmartField value="{lytid}"/>
+			</smartForm:GroupElement>
+			<smartForm:GroupElement>
+				<smartField:SmartField value="{varnt}" change=".onWorkspacePopupVariantChange"/>				
+			</smartForm:GroupElement>
+			<smartForm:GroupElement>
+				<smartField:SmartField value="{vwseq}"/>
+			</smartForm:GroupElement>
+			<smartForm:GroupElement>
+				<smartField:SmartField value="{shrng}"
+					fetchValueListReadOnly="true" />
+			</smartForm:GroupElement>
+		</smartForm:Group>
+	</smartForm:SmartForm>
+	<!-- blocked="{= ${varnt} !== ''}" -->
+	<smartFilterBar:SmartFilterBar
+		id="smartFilterBarEditPopup" entitySet="WorkspaceView"
+		filterBarExpanded="true" showGoOnFB="false"
+		showFilterConfiguration="false" initialise="onInitialise"
+		search="onFilterSearch" useToolbar="false" enableBasicSearch="false"		
+		controlConfiguration="{path: 'viewModel>/workspaceSelectionsDateField'}"
+		considerSelectionVariants="false"  useDateRangeType="true">
+		<smartFilterBar:controlConfiguration>
+				<smartFilterBar:ControlConfiguration key="{path: 'viewModel>key'}" visibleInAdvancedArea="true"
+					conditionType="{
+						module: '{path: 'viewModel>module'}',
+						ignoreTime: false,
+						operations: {
+							filter: [
+								{path: 'key', contains: 'NEXT', exclude:true},								
+								{path: 'key', equals: 'TOMORROW', exclude:true},
+								{path: 'key', equals: 'YESTERDAY', exclude:true},
+								{path: 'key', equals: 'TO', exclude:true},
+								{path: 'key', equals: 'LASTWEEK', exclude:true},
+								{path: 'key', equals: 'LASTMONTH', exclude:true},
+								{path: 'key', equals: 'LASTYEAR', exclude:true},
+								{path: 'key', equals: 'LASTQUARTER', exclude:true},
+								{path: 'key', equals: 'QUARTER1', exclude:true},
+								{path: 'key', equals: 'QUARTER2', exclude:true},
+								{path: 'key', equals: 'QUARTER3', exclude:true},
+								{path: 'key', equals: 'QUARTER4', exclude:true}
+							]
+						}
+					}"
+				> 
+				</smartFilterBar:ControlConfiguration>
+		</smartFilterBar:controlConfiguration>
+		<smartFilterBar:layoutData>
+			<FlexItemData shrinkFactor="0" />
+		</smartFilterBar:layoutData>
+		<!-- <smartFilterBar:customData>
+			<core:CustomData key="dateFormatSettings"
+				value='\{"UTC":true,"style":"medium"\}' />
+		</smartFilterBar:customData> -->
+	</smartFilterBar:SmartFilterBar>
+</core:FragmentDefinition>

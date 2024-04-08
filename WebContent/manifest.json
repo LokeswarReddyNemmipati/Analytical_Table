@@ -1,0 +1,151 @@
+{
+	"_version": "1.8.0",
+	"sap.app": {
+		"id": "zvui.work",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},		
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},	
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": false,
+			"phone": false
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "zvui.work.view.App",
+			"type": "XML"
+		},
+		"config": {
+			"fullWidth": true
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {},
+				"sap.ui.comp" : {},
+				"sap.ui.unified" : {},
+				"sap.suite.ui.microchart" : {},
+				"sap.uxap" : {},
+				"sap.ui.table" : {},
+				"sap.ui.fl" : {}
+			}
+		},
+		"services": {
+			"ShellUIService": {
+				"factoryName": "sap.ushell.ui5service.ShellUIService"
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": false
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "zvui.work.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Inline",
+					"refreshAfterChange": false
+				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"viewType": "XML",
+				"viewPath": "zvui.work.view",
+				"controlId": "idAppControl",
+				"controlAggregation" : "pages",
+				"transition": "slide"
+			},
+			"routes": [
+				{
+					"name": "Worklist",
+					"pattern": "",
+					"target": ["Worklist"]
+				},
+				{
+					"name": "Detail",
+					"pattern": "detail/{path}",
+					"target": ["Detail"]
+				},
+				{
+					"name": "DetailDetail",
+					"pattern": "detailDetail/{path}/{path1}/{level}",
+					"target": "DetailDetail"
+				},
+				{
+					"name": "DetailDetail2",
+					"pattern": "detailDetail/{path}/{path1}",
+					"target": ["DetailDetail"]
+				}
+				
+			],
+			"targets": {
+				"Worklist": {
+					"viewType": "XML",
+					"viewName": "Worklist",
+					"controlAggregation": "beginColumnPages"
+				},
+				"Detail": {
+					"viewType": "XML",
+					"viewName": "Detail",
+					"controlAggregation": "beginColumnPages"
+				},
+				"DetailDetail": {
+					"viewType": "XML",
+					"viewName": "DetailDetail",
+					"controlAggregation": "midColumnPages"
+				},"DetailDetail2": {
+					"viewType": "XML",
+					"viewName": "DetailDetail",
+					"controlAggregation": "beginColumnPages"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,461 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" height="100%"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+	xmlns:uxap="sap.uxap"
+	xmlns:build="sap.build"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartVariant="sap.ui.comp.smartvariants"
+	xmlns:block="zvui.work.fragment"
+	xmlns:wc="zvui.work.control"
+	xmlns:table="sap.ui.table"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:smartmicrochart="sap.ui.comp.smartmicrochart" controllerName="zvui.work.controller.detailPage">
+	<Page showHeader="false">
+		<uxap:ObjectPageLayout id="detailobjectPage" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="true" headerContentPinnable="true" isChildPage="true" enableLazyLoading="true" showHeaderContent="{= ${viewModel>/showDetailClose}}" toggleHeaderOnTitleClick="{= ${viewModel>/showDetailClose}}" showFooter="{= ${viewModel>/showDetailClose}}" upperCaseAnchorBar="false" flexEnabled="true" navigate="onSectionChange" useIconTabBar="true">
+			<uxap:headerTitle>
+				<uxap:ObjectPageDynamicHeaderTitle>
+					<uxap:heading>
+						<VBox>
+							<items>
+								<HBox alignItems="Center">
+									<items>
+										<Title text="{oDataModel>descr}" visible="true" />
+										<ToolbarSeparator visible="{parts:[{path:'viewModel>/WorkspaceView_SRfilterMode'},{value:'vboxVariantManageSeparator'}, {path:'viewModel>/showDetailClose'}, {value:'true'} ],formatter:'zvui.work.controller.AnnotationHelper.getVariantManagementVisibility'}" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
+										<smartVariant:SmartVariantManagement id="__SVM01" showShare="true" persistencyKey="{parts: [{value: 'xVUIxWS_WS_DTV_L1'}, {path: 'viewModel>/wspvw'}], formatter: 'zvui.work.controller.AnnotationHelper.getPersistenceKeyforView'}::SV" showExecuteOnSelection="true" select="onFilterBarVariantSelect" visible="{parts:[{path:'viewModel>/WorkspaceView_SRfilterMode'},{value:'vboxVariantManage'},{path:'viewModel>/showDetailClose'}],formatter:'zvui.work.controller.AnnotationHelper.getVariantManagementVisibility'}" save="onFilterBarVariantSave" entitySet="WorkspaceView_SR" />
+									</items>
+								</HBox>
+								<Text text="" visible="false" />
+							</items>
+						</VBox>
+					</uxap:heading>
+					<uxap:navigationActions>
+						<SegmentedButton id="template::FilterSwitchButton" selectedKey="{viewModel>/WorkspaceView_SRfilterMode}" width="inherit" selectionChange="onFilterModeSegmentedButtonChange" visible="false">
+							<layoutData>
+								<OverflowToolbarLayoutData priority="NeverOverflow" />
+							</layoutData>
+							<items>
+								<SegmentedButtonItem icon="sap-icon://filter-fields" tooltip="{i18n>FILTER_COMPACT}" key="compact" visible="{= ${viewModel>/showDetailClose}}"/>
+								<SegmentedButtonItem icon="sap-icon://header" tooltip="{i18n>SNAPPING_HEADER}" key="snaphdr" visible="false" />
+							</items>
+							<customData>
+								<core:CustomData key="entityName" value="WorkspaceView_SR" />
+							</customData>
+						</SegmentedButton>
+					</uxap:navigationActions>
+				</uxap:ObjectPageDynamicHeaderTitle>
+			</uxap:headerTitle>
+			<uxap:headerContent>
+				<layout:VerticalLayout width="100%" class="sapSmartTemplatesAnalyticalListPageFilterContainer">
+					<VBox visible="{parts:[{path:'viewModel>/WorkspaceView_SRfilterMode'},{value:'compact'}],formatter:'zvui.work.controller.AnnotationHelper.getHeaderControlVisibility'}" >
+						<smartFilterBar:SmartFilterBar id="myfilter1" entitySet="WorkspaceView_SR" filterBarExpanded="true" persistencyKey="{parts: [{value: 'xVUIxWS_WS_DTV_L1'}, {path: 'viewModel>/wspvw'}], formatter: 'zvui.work.controller.AnnotationHelper.getPersistenceKeyforView'}::Filter" smartVariant="__SVM01" initialized="onFilterInitialized" blocked="{= ${viewModel>/modelChanged}}" afterVariantLoad="onAfterFilterVariantLoad" search="onFilterSearch" useToolbar="false" enableBasicSearch="true" considerSelectionVariants="true" filterChange="onFilterChange" showClearOnFB="true" showClearButton="true" assignedFiltersChanged="onAssignedFiltersChanged">
+							<smartFilterBar:controlConfiguration></smartFilterBar:controlConfiguration>
+							<smartFilterBar:layoutData>
+								<FlexItemData shrinkFactor="0" />
+							</smartFilterBar:layoutData>
+						</smartFilterBar:SmartFilterBar>
+						<smartTable:SmartTable smartFilterId="myfilter1" height="100%" width="100%" direction="Column" tableType="ResponsiveTable" fitContainer="true" visible="false" enableAutoBinding="true" entitySet="WorkspaceView_SR" showRowCount="true" header="Data Models" useExportToExcel="true" useVariantManagement="false" useTablePersonalisation="true" tableBindingPath="to_WorkspaceView_SR" beforeExport="onBeforeExport" requestAtLeastFields="row_id" beforeRebindTable="onBeforeRebindTable">
+							<smartTable:layoutData>
+								<FlexItemData growFactor="1" />
+							</smartTable:layoutData>
+							<smartTable:customToolbar>
+								<OverflowToolbar design="Transparent">
+									<ToolbarSpacer />
+								</OverflowToolbar>
+							</smartTable:customToolbar>
+							<Table sticky="ColumnHeaders" itemPress="onItemPress" mode="SingleSelectLeft" fixedLayout="false" growing="true" growingThreshold="15">
+								<ColumnListItem type="Navigation" />
+							</Table>
+						</smartTable:SmartTable>
+					</VBox>
+				</layout:VerticalLayout>
+			</uxap:headerContent>
+			<uxap:sections>
+				<uxap:ObjectPageSection id="mypagesection_X01" showTitle="false" class="vistexPageSection" >
+					<uxap:subSections>
+						<uxap:ObjectPageSubSection title="Item" class="sapSmartTemplatesObjectPageSubSection" visible="true">
+							<uxap:customData>
+								<core:CustomData key="Label" value="Item" />
+							</uxap:customData>
+							<uxap:blocks>
+								<layout:Grid defaultSpan="XL12 L12 M12 S12" hSpacing="0" vSpacing="0" class="sapSmartTemplatesObjectPageSubSectionGrid">
+									<layout:ResponsiveSplitter id="to_X01::com.sap.vocabularies.UI.v1.LineItem::WS_DTV::DSC" class="vistexResponsiveSplitter">
+										<layout:PaneContainer>
+											<layout:SplitPane>
+												<ScrollContainer height="100%" horizontal="false" vertical="true">
+													<Panel width="100%" class="vistexResponsiveSplitterMainPanel">
+														<!-- <smartFilterBar:SmartFilterBar id="myfilter2" entitySet="X01" filterBarExpanded="true" persistencyKey="to_X01::com.sap.vocabularies.UI.v1.LineItem::WSTZNW::Filter" basicSearchFieldName="donum" initialized="onFilterInitialized" blocked="{= ${viewModel>/modelChanged}}" afterVariantLoad="onAfterFilterVariantLoad" search="onFilterSearch" useToolbar="false" enableBasicSearch="true" considerSelectionVariants="true" filterChange="onFilterChange" showClearOnFB="true" showClearButton="true" visible="false" assignedFiltersChanged="onAssignedFiltersChanged">
+														<smartFilterBar:controlConfiguration></smartFilterBar:controlConfiguration>
+														<smartFilterBar:layoutData>
+														<FlexItemData shrinkFactor="0" />
+														</smartFilterBar:layoutData>
+														</smartFilterBar:SmartFilterBar> -->
+														<smartTable:SmartTable id="mytable_X01" height="100%" persistencyKey="to_X01::com.sap.vocabularies.UI.v1.LineItem::WS_DTV::Table" smartVariant="__SVM01"   fitContainer="false" useOnlyOneSolidToolbar="true" beforeRebindTable="onTableRebind" enableAutoBinding="false" showRowCount="false" requestAtLeastFields="row_id,zaccnum,zaffil__wrk,zaffil__wrk_fc,zcomodel__wrk,zcomodel__wrk_fc,zctrysale,zprodtype,zusetype__wrk,zusetype__wrk_fc,zprice,zcurr,zquant,cl_unit,prcsr,cl_ptr_dtrm__wrk,cl_ptr_dtrm__wrk_fc,zisrccode,updkz" useVariantManagement="true" useExportToExcel="false" showTablePersonalisation="true" header="Summary" entitySet="X01" demandPopin="false" enableCustomFilter="false" noData="{i18n>NODATA}" fieldChange="onTableFieldChange" placeToolbarInTable="true" dataReceived="onDataReceived" smartFilterId="">
+															<smartTable:customData>
+																<core:CustomData key="useSmartToggle" value="true" />
+																<core:CustomData key="useSmartField" value="true" />
+																<core:CustomData key="dateFormatSettings" value='\{"UTC":true,"style":"medium"\}'/>
+															</smartTable:customData>
+															<smartTable:layoutData>
+																<FlexItemData growFactor="1" baseSize="0%" />
+															</smartTable:layoutData>
+															<smartTable:customToolbar>
+																<OverflowToolbar design="Transparent">
+																	<ToolbarSpacer />
+																	<ToolbarSeparator visible="true" />
+																	<Label text="{i18n>MULTISELECT}:" visible="true"/>
+																	<Switch state="false" tooltip="{i18n>ENABLEMULTISELECT}" change="onTableSelectionModeChange" visible="true">
+																		<customData>
+																			<core:CustomData key="entitySet" value="X01" />
+																		</customData>
+																	</Switch>
+																	<HBox visible="true"></HBox>
+																</OverflowToolbar>
+															</smartTable:customToolbar>
+															<table:AnalyticalTable enableColumnReordering="true" selectionMode="Single" rowSelectionChange="onSelectionChange" class="vistexCompactStyle" visibleRowCount="22" threshold="25" visibleRowCountMode="Interactive" selectionBehavior="Row" enableBusyIndicator="true" enableColumnFreeze="true" enableCellFilter="true" rowActionCount="1" rowHeight="19">
+																<table:rowSettingsTemplate>
+																	<table:RowSettings highlight="{path: 'updkz', formatter: 'zvui.work.controller.AnnotationHelper.setRowHighlightColor' }" />
+																</table:rowSettingsTemplate>
+																<table:rowActionTemplate>
+																	<table:RowAction>
+																		<table:items>
+																			<table:RowActionItem type="Navigation" press="onListNavigate" visible="true"/>
+																		</table:items>
+																	</table:RowAction>
+																</table:rowActionTemplate>
+																<table:columns>
+																	<!-- <table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="donum" leadingProperty="donum" 
+																	filterProperty="donum" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'donum','leadingProperty':'donum', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'donum', 'filterProperty':'donum','columnIndex':'1'}" />
+																		</table:customData>
+																		<Label text="Object" />
+																		<table:template>
+																			<Text text="{donum}" wrapping="false" />
+																		</table:template>
+																	</table:AnalyticalColumn> -->
+																	<!-- <table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="edtst" leadingProperty="edtst" filterProperty="edtst" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'edtst','leadingProperty':'edtst', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'edtst', 
+																			'groupBy':'edtst', 'filterProperty':'edtst','columnIndex':'2'}" />
+																		</table:customData>
+																		<Label text="Edit Status" />
+																		<table:template>
+																			<ObjectStatus icon="{parts:[{path:'edtst'}],formatter:'zvui.work.controller.AnnotationHelper.getEditStatusFieldIcon'}"/>
+																		</table:template>
+																	</table:AnalyticalColumn> -->
+																	<table:AnalyticalColumn  groupHeaderFormatter=".groupHeaderFormatter" autoResizable="true" width="12.50em" sortProperty="zaccnum" filterProperty="zaccnum" groupProperty="zaccnum" 
+																	leadingProperty="zaccnum" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'zaccnum','leadingProperty':'zaccnum', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'zaccnum', 'filterProperty':'zaccnum','columnIndex':'2'}" />
+																		</table:customData>
+																		<Label text="Account Number" />
+																		<table:template>
+																			<Text text="{zaccnum}" wrapping="false" >
+																				<customData>
+																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
+																				</customData>
+																			</Text>
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<table:AnalyticalColumn groupHeaderFormatter=".groupHeaderFormatter" autoResizable="true" width="12.50em" sortProperty="zaffil__wrk" 
+																	leadingProperty="zaffil__wrk"
+																	filterProperty="zaffil__wrk" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'zaffil__wrk','leadingProperty':'zaffil__wrk', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'zaffil__wrk', 'filterProperty':'zaffil__wrk','columnIndex':'2'}" />
+																		</table:customData>
+																		<Label text="Affiliate" />
+																		<table:template>
+																			<Text text="{zaffil__wrk}" wrapping="false" >
+																				<customData>
+																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
+																				</customData>
+																			</Text>
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<!-- <table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="zcomodel__wrk" 
+																	leadingProperty="zcomodel__wrk"
+																	filterProperty="zcomodel__wrk" visible="true">
+																		 <table:customData>
+                                                                            <core:CustomData key="p13nData" value="{'columnKey':'zcomodel__wrk','leadingProperty':'zcomodel__wrk', 'description':'to_zcomodel__wrk/ddtext' , 'displayBehaviour':'descriptionAndId', 'navigationProperty':'to_zcomodel__wrk', 'additionalProperty':'to_zcomodel__wrk/ddtext', 'sortProperty':'zcomodel__wrk', 'filterProperty':'zcomodel__wrk','columnIndex':'3'}" />
+                                                                        </table:customData>
+                                                                        <Label text="Commercial Model" />
+                                                                        <table:template>
+                                                                            <Text text="{parts:[{path: 'to_zcomodel__wrk/ddtext'} , {path: 'zcomodel__wrk'}], formatter: 'zvui.work.controller.AnnotationHelper.getLinkTextBasedOnTextArrangement'}" wrapping="false" />
+                                                                        </table:template>
+																	</table:AnalyticalColumn> -->
+																	<!-- <table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="cm_city_vd" 
+																	leadingProperty="cm_city_vd"
+																	filterProperty="cm_city_vd" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'cm_city_vd','leadingProperty':'cm_city_vd', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'cm_city_vd', 'filterProperty':'cm_city_vd','columnIndex':'6'}" />
+																		</table:customData>
+																		<Label text="City" />
+																		<table:template>
+																			<Text text="{cm_city_vd}" wrapping="false" />
+																		</table:template>
+																	</table:AnalyticalColumn> -->
+																	<!-- <table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="zalbumtitle" 
+																	leadingProperty="zalbumtitle"
+																	filterProperty="zalbumtitle" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'zalbumtitle','leadingProperty':'zalbumtitle', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'zalbumtitle', 'filterProperty':'zalbumtitle','columnIndex':'5'}" />
+																		</table:customData>
+																		<Label text="Album Title" />
+																		<table:template>
+																			<Text text="{zalbumtitle}" wrapping="false" >
+																				<customData>
+																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
+																				</customData>
+																			</Text>
+																		</table:template>
+																	</table:AnalyticalColumn> -->
+																	<!-- <table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="zcomodel" 
+																	leadingProperty="zcomodel"
+																	filterProperty="zcomodel" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'zcomodel','leadingProperty':'zcomodel', 'description':'to_zcomodel/ddtext' , 'displayBehaviour':'descriptionAndId', 'navigationProperty':'to_zcomodel', 'additionalProperty':'to_zcomodel/ddtext', 'sortProperty':'zcomodel', 'filterProperty':'zcomodel','columnIndex':'6'}" />
+																		</table:customData>
+																		<Label text="Commercial Model" />
+																		<table:template>
+																			<Text text="{parts:[{path: 'to_zcomodel/ddtext'} , {path: 'zcomodel'}], formatter: 'zvui.work.controller.AnnotationHelper.getLinkTextBasedOnTextArrangement'}" wrapping="false" />
+																		</table:template>
+																	</table:AnalyticalColumn> -->
+																	<table:AnalyticalColumn groupHeaderFormatter=".groupHeaderFormatter" autoResizable="true" width="12.50em" sortProperty="zctrysale" 
+																	leadingProperty="zctrysale"
+																	filterProperty="zctrysale" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'zctrysale','leadingProperty':'zctrysale', 'description':'to_zctrysale/landx' , 'displayBehaviour':'descriptionAndId', 'navigationProperty':'to_zctrysale', 'additionalProperty':'to_zctrysale/landx', 'sortProperty':'zctrysale', 'filterProperty':'zctrysale','columnIndex':'7'}" />
+																		</table:customData>
+																		<Label text="Sales Country" />
+																		<table:template>
+																			<Text text="{parts:[{path: 'to_zctrysale/landx'} , {path: 'zctrysale'}], formatter: 'zvui.work.controller.AnnotationHelper.getLinkTextBasedOnTextArrangement'}" wrapping="false" />
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<table:AnalyticalColumn agroupHeaderFormatter=".groupHeaderFormatter" utoResizable="true" width="12.50em" sortProperty="zprodtype" 
+																	leadingProperty="zprodtype"
+																	filterProperty="zprodtype" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'zprodtype','leadingProperty':'zprodtype', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'zprodtype', 'filterProperty':'zprodtype','columnIndex':'5'}" />
+																		</table:customData>
+																		<Label text="Product type" />
+																		<table:template>
+																			<Text text="{zprodtype}" wrapping="false" >
+																				<customData>
+																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
+																				</customData>
+																			</Text>
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<table:AnalyticalColumn groupHeaderFormatter=".groupHeaderFormatter" autoResizable="true" width="12.50em" sortProperty="zusetype__wrk" 
+																	leadingProperty="zusetype__wrk" filterProperty="zusetype__wrk" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'zusetype__wrk','leadingProperty':'zusetype__wrk', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'zusetype__wrk', 'filterProperty':'zusetype__wrk','columnIndex':'6'}" />
+																		</table:customData>
+																		<Label text="Usage Type" />
+																		<table:template>
+																			<Text text="{zusetype__wrk}" wrapping="false" >
+																				<customData>
+																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
+																				</customData>
+																			</Text>
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<table:AnalyticalColumn groupHeaderFormatter=".groupHeaderFormatter" autoResizable="true" width="12.50em" sortProperty="zprice" 
+																	leadingProperty="zprice"
+																	filterProperty="zprice" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'zprice','leadingProperty':'zprice', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'zprice', 'filterProperty':'zprice','columnIndex':'7'}" />
+																		</table:customData>
+																		<Label text="Units Price" />
+																		<table:template>
+																			<HBox justifyContent="End" alignItems="Center">
+																				<Text text="{parts:[{path: 'zprice'},{value: '2'}], formatter: 'zvui.work.controller.AnnotationHelper.formatDeimalValue'}" wrapping="false" />
+																				<Text text="{zcurr}" class="UnitFieldMarginLeft" wrapping="false" />
+																			</HBox>
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<table:AnalyticalColumn groupHeaderFormatter=".groupHeaderFormatter" autoResizable="true" width="12.50em" sortProperty="zquant" filterProperty="zquant" leadingProperty="zquant" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'zquant','leadingProperty':'zquant', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'zquant', 'filterProperty':'zquant','columnIndex':'8'}" />
+																		</table:customData>
+																		<Label text="Quantity" />
+																		<table:template>
+																			<HBox justifyContent="End" alignItems="Center">
+																				<Text text="{parts:[{path: 'zquant'},{value: ''}], formatter: 'zvui.work.controller.AnnotationHelper.formatDeimalValue'}" wrapping="false" />
+																				<Text text="{cl_unit}" class="UnitFieldMarginLeft" wrapping="false" />
+																			</HBox>
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<table:AnalyticalColumn groupHeaderFormatter=".groupHeaderFormatter" autoResizable="true" width="12.50em" sortProperty="prcsr" filterProperty="prcsr" leadingProperty="prcsr" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'prcsr','leadingProperty':'prcsr', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'prcsr', 'filterProperty':'prcsr','columnIndex':'9'}" />
+																		</table:customData>
+																		<Label text="Assigned To" />
+																		<table:template>
+																			<Text text="{prcsr}" wrapping="false" >
+																				<customData>
+																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
+																				</customData>
+																			</Text>
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<table:AnalyticalColumn groupHeaderFormatter=".groupHeaderFormatter" autoResizable="true" width="12.50em" sortProperty="cl_ptr_dtrm__wrk" leadingProperty="cl_ptr_dtrm__wrk" filterProperty="cl_ptr_dtrm__wrk" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'cl_ptr_dtrm__wrk','leadingProperty':'cl_ptr_dtrm__wrk', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'cl_ptr_dtrm__wrk', 'filterProperty':'cl_ptr_dtrm__wrk','columnIndex':'10'}" />
+																		</table:customData>
+																		<Label text="Partner Determined" />
+																		<table:template>
+																			<Text text="{cl_ptr_dtrm__wrk}" wrapping="false" >
+																				<customData>
+																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
+																				</customData>
+																			</Text>
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<table:AnalyticalColumn groupHeaderFormatter=".groupHeaderFormatter" autoResizable="true" width="12.50em" sortProperty="zisrccode" 
+																	leadingProperty="zisrccode"
+																	filterProperty="zisrccode" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'zisrccode','leadingProperty':'zisrccode', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'zisrccode', 'filterProperty':'zisrccode','columnIndex':'11'}" />
+																		</table:customData>
+																		<Label text="Source ISRC" />
+																		<table:template>
+																			<Text text="{zisrccode}" wrapping="false" >
+																				<customData>
+																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
+																				</customData>
+																			</Text>
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<!-- <table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="qunty_vd" 
+																	leadingProperty="qunty_vd"
+																	filterProperty="qunty_vd" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'qunty_vd','leadingProperty':'qunty_vd', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'qunty_vd', 'filterProperty':'qunty_vd','columnIndex':'17'}" />
+																		</table:customData>
+																		<Label text="Unit" />
+																		<table:template>
+																			<HBox justifyContent="End" alignItems="Center" wrapping="false">
+																				<Text text="{parts:[{path: 'qunty_vd'}], formatter: 'zvui.work.controller.AnnotationHelper.formatDeimalValue'}" wrapping="false"/>
+																			</HBox>
+																		</table:template>
+																	</table:AnalyticalColumn>
+																	<table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="qwkvw__x03" 
+																	leadingProperty="qwkvw__x03"
+																	filterProperty="qwkvw__x03" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'qwkvw__x03','leadingProperty':'qwkvw__x03', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'qwkvw__x03', 'filterProperty':'qwkvw__x03','columnIndex':'18'}" />
+																		</table:customData>
+																		<Label text="Partner" />
+																		<table:template>
+																			<Button text="Partner" tooltip="Partner" press="onShowSectionInPopover">
+																				<customData>
+																					<core:CustomData key="entitySet" value="X01" />
+																					<core:CustomData key="label" value="Partner" />
+																					<core:CustomData key="targetEntity" value="X03" />
+																				</customData>
+																			</Button>
+																		</table:template>
+																	</table:AnalyticalColumn> -->
+																</table:columns>
+															</table:AnalyticalTable>
+														</smartTable:SmartTable>
+													</Panel>
+												</ScrollContainer>
+												<layout:layoutData>
+													<layout:SplitterLayoutData size="100%"/>
+												</layout:layoutData>
+											</layout:SplitPane>
+											<layout:SplitPane>
+												<Panel visible="false" class="noPadding">
+													<VBox class="vistexSideContent">
+														<HBox width="100%" class="noPadding" renderType="Bare">
+															<SegmentedButton id="to_X01::com.sap.vocabularies.UI.v1.LineItem::WS_DTV::DSC::SegButton" width="100%">
+																<items>
+																	<SegmentedButtonItem text="{i18n>DETAILS}" key="details" press="onDSCSegmentedButtonChange" />
+																	<SegmentedButtonItem text="{i18n>CODES}" key="codes" press="onDSCSegmentedButtonChange" />
+																	<SegmentedButtonItem text="{i18n>SUGGESTIONS}" key="match" press="onDSCSegmentedButtonChange" />
+																	<SegmentedButtonItem text="{i18n>NOTES}" key="notes" press="onDSCSegmentedButtonChange" />
+																</items>
+															</SegmentedButton>
+															<Button type="Transparent" icon="sap-icon://decline" visible="true" press="onSelectAllToggle" tooltip="{i18n>CLEAR_SELECTION}">
+																<customData>
+																	<core:CustomData key="Action" value="SELECT_NONE" />
+																</customData>
+															</Button>
+														</HBox>
+														<OverflowToolbar height="auto">
+															<VBox direction="Row" width="100%" class="sapMTB sapMListInfoTBar sapMTB-Info-CTX vistex-sideContent-TableTitle" visible="{path: 'viewModel>/X01showDscApply', formatter: 'zvui.work.controller.AnnotationHelper.getDSCinfoBarVisible' }">
+																<Label text="" class="sapUiSelectable sapMLabelTBHeader sapMLabelMaxWidth sapMBarChild" />
+															</VBox>
+															<VBox class="sapMTB sapMListInfoTBar sapMTB-Info-CTX vistex-sideContent-TableTitle">
+																<Label text="" class="sapUiSelectable sapMLabelTBHeader sapMLabelMaxWidth sapMBarChild" />
+															</VBox>
+															<ToolbarSpacer />
+															<Button type="Emphasized" press="onDscApply" text="{i18n>APPLY}" visible="{path: 'viewModel>/X01showDscApply', formatter: 'zvui.work.controller.AnnotationHelper.getDSCinfoBarVisible' }" ></Button>
+														</OverflowToolbar>
+														<ScrollContainer width="100%" height="550px" horizontal="false" vertical="true">
+															<VBox id="to_X01::com.sap.vocabularies.UI.v1.LineItem::WSTZNW::DSC::IconTab" class="sapUiNoContentPadding">
+																<items>
+																	<Panel visible="{= (${viewModel>/DSCSegmentedButtonSelectedKey} === 'details')}" class="sapUiNoContentPadding">
+																		<content>
+																			<Table id="to_X01::com.sap.vocabularies.UI.v1.LineItem::WSTZNW::DSC::Table">
+																				<columns>
+																					<Column>
+																						<Text text="Field" />
+																					</Column>
+																					<Column>
+																						<Text text="Value" />
+																					</Column>
+																				</columns>
+																			</Table>
+																		</content>
+																	</Panel>
+																	<Panel visible="{= (${viewModel>/DSCSegmentedButtonSelectedKey} === 'codes')}" class="sapUiNoContentPadding">
+																		<content></content>
+																	</Panel>
+																	<Panel visible="{= (${viewModel>/DSCSegmentedButtonSelectedKey} === 'match')}" class="sapUiNoContentPadding">
+																		<content></content>
+																	</Panel>
+																	<Panel visible="{= (${viewModel>/DSCSegmentedButtonSelectedKey} === 'notes')}" class="sapUiNoContentPadding">
+																		<content></content>
+																	</Panel>
+																</items>
+															</VBox>
+														</ScrollContainer>
+													</VBox>
+												</Panel>
+											</layout:SplitPane>
+										</layout:PaneContainer>
+									</layout:ResponsiveSplitter>
+								</layout:Grid>
+							</uxap:blocks>
+						</uxap:ObjectPageSubSection>
+					</uxap:subSections>
+				</uxap:ObjectPageSection>
+			</uxap:sections>
+			<uxap:footer>
+				<OverflowToolbar visible="{parts: [{path: 'message>/'}, {path: 'viewModel>/modelChanged'}, {path: 'viewModel>/disp_only'}], formatter: 'zvui.work.controller.AnnotationHelper.getDetailPageFooterVisibility'}">
+					<Button id="messageButton" icon="sap-icon://alert" text="{parts:[{path: 'message>/'}], formatter: 'zvui.work.controller.AnnotationHelper.getFooterMessageButtonText'}" visible="{parts: [{path: 'message>/'}, {path: 'viewModel>/showDetailClose'}], formatter: 'zvui.work.controller.AnnotationHelper.getDetailFooterMessageButtonVisibility'}" type="Emphasized" press="onMessagePopover"/>
+					<core:InvisibleText id="showMessagesButtonInvisibleText" text="{i18n>MESSAGE_BUTTON_TYPE}" />
+					<ToolbarSpacer />
+					<Button type="Emphasized" text="Confirm Adjustment" enabled="{ui>/enabled}" press="onSave" visible="{= ${ui>/editable} &amp;&amp; ${viewModel>/modelChanged}}">
+						<customData>
+							<core:CustomData key="FImport" value="CNFRM_ADJ" />
+						</customData>
+					</Button>
+					<Button type="Emphasized" text="Save" enabled="{ui>/enabled}" press="onSave" visible="{= ${ui>/editable} &amp;&amp; ${viewModel>/modelChanged}}">
+						<customData>
+							<core:CustomData key="FImport" value="SAVE" />
+						</customData>
+					</Button>
+					<Button text="{i18n>CANCEL}" press="onCancel" enabled="{ui>/enabled}" visible="{= ${ui>/editable} &amp;&amp; ${viewModel>/modelChanged}}" />
+				</OverflowToolbar>
+			</uxap:footer>
+		</uxap:ObjectPageLayout>
+	</Page>
+</mvc:View>

@@ -1,0 +1,219 @@
+<core:FragmentDefinition
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1"
+	xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:uxap="sap.uxap"
+	xmlns:build="sap.build" xmlns:dt="sap.ui.dt" xmlns:microchart="sap.suite.ui.microchart"
+	xmlns:layout="sap.ui.layout" xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable">
+	<template:with 
+		path="entityType>com.sap.vocabularies.UI.v1.HeaderInfo" var="header">
+	<!-- <VBox> -->
+	<!-- <ScrollContainer vertical="true"> -->	
+	<uxap:ObjectPageLayout preserveHeaderStateOnScroll="true" isChildPage="true" height="90%"
+	enableLazyLoading="true" flexEnabled="true" useIconTabBar="true" headerContentPinnable="false" class="manualMatchObjectPage">
+	<!-- <uxap:headerTitle>
+		<uxap:ObjectPageDynamicHeaderTitle>
+		<uxap:heading></uxap:heading>
+		<uxap:expandedHeading></uxap:expandedHeading>
+		<uxap:snappedHeading></uxap:snappedHeading>
+		</uxap:ObjectPageDynamicHeaderTitle>
+	</uxap:headerTitle> -->
+	<uxap:headerContent>
+		<smartFilterBar:SmartFilterBar id="{viewModel>/matchDetails/matchTool/manualFilterID}" 
+			entitySet="{entitySet>name}" enableBasicSearch="true" considerSelectionVariants="false"
+			initialized="onManualMatchFilterInitialized"
+	    	persistencyKey="{path: 'entityType>', formatter: 'zvui.work.controller.AnnotationHelper.getPersistenceKey'}::Filter"
+			showFilterConfiguration="false" filterBarExpanded="true" useToolbar="true" showClearOnFB="true" showClearButton="true">
+			<smartFilterBar:controlConfiguration>
+				<template:with
+					path="entityType>com.sap.vocabularies.UI.v1.SelectionFields"
+					var="selectionFieldCollection">
+					<template:repeat
+						list="{selectionFieldCollection>}" var="selectionField">
+						<!-- <template:with path="selectionField>" helper="sap.ui.model.odata.AnnotationHelper.resolvePath" 
+							var="selectionFieldValue"> -->
+						<smartFilterBar:ControlConfiguration
+							key="{selectionField>PropertyPath}">
+						</smartFilterBar:ControlConfiguration>
+						<!-- </template:with> -->
+					</template:repeat>
+				</template:with>
+			</smartFilterBar:controlConfiguration>
+			<smartFilterBar:layoutData>
+				<FlexItemData shrinkFactor="0" />
+			</smartFilterBar:layoutData>
+		</smartFilterBar:SmartFilterBar>
+		</uxap:headerContent>
+		<uxap:sections>		
+		<uxap:ObjectPageSection showTitle="false">
+		<uxap:subSections>
+		<uxap:ObjectPageSubSection>
+		<!-- <Panel width="100%" height="100%"> -->
+			<smartTable:SmartTable smartFilterId="{viewModel>/matchDetails/matchTool/manualFilterID}" 				
+				enableAutoBinding="false" entitySet="{entitySet>name}" ignoreFromPersonalisation="true"
+				useVariantManagement="false" header="{header>TypeName/String}"
+				persistencyKey="{path: 'entityType>', formatter: 'zvui.work.controller.AnnotationHelper.getPersistenceKey'}::SmartTable"
+				editable="false" useExportToExcel="false" useTablePersonalisation="false"
+				requestAtLeastFields="{path: 'entityType>', formatter: 'zvui.work.controller.AnnotationHelper.getRequestAtLeastFields'}">
+				<template:with path="entityType>vui.bodc.ResponsiveLineItem" var="lineItems">
+				<Table fixedLayout="false" growing="true"
+					growingScrollToLoad="true" growingThreshold="25"
+					sticky="ColumnHeaders,HeaderToolbar">
+	   				<columns>					
+						<template:repeat list="{lineItems>}" var="dataField">
+						<template:with path="dataField>Value"
+								helper="sap.ui.model.odata.AnnotationHelper.resolvePath"
+								var="dataFieldValue">
+							<Column hAlign="Begin">
+								<customData>
+								<template:if test="{= ${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.CollectionField'}">
+									<template:then>
+										<core:CustomData key="p13nData"
+											value="{parts: 
+												[{path: 'entitySet>'}, {path: 'dataField>'}], 
+												formatter: 'zvui.work.controller.AnnotationHelper.createP13NforStackColumn'}" />
+									</template:then>
+									<template:elseif test="{= (${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataFieldForAction')}">
+										<core:CustomData key="p13nData"
+											value="{parts: [ {path: 'entityType>'} ], formatter: 'zvui.work.controller.AnnotationHelper.createP13NColumnForMQLFR'}" />
+									</template:elseif>
+									<template:else>										
+										<core:CustomData key="p13nData"
+											value="{parts: [{path: 'entitySet>'}, 
+											{path: 'dataFieldValue>'}, {path: 'dataField>'}], formatter: 'zvui.work.controller.AnnotationHelper.createP13N'}" />
+									</template:else>
+								</template:if>
+								</customData>
+								<template:if test="{= ${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataField'}">
+									<template:then>
+										<template:with path="dataField>Value"
+										helper="sap.ui.model.odata.AnnotationHelper.resolvePath" var="dataFieldValue">
+											<Text text="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}], 
+											formatter: 'zvui.work.controller.AnnotationHelper.getColumnHeaderText'}"/>
+										</template:with>										
+									</template:then>
+									<template:elseif test="{= ${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.CollectionField'}">
+											<Text text="{path: 'dataField>Label/String'}"/>
+									</template:elseif>
+									<template:elseif test="{= ${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataFieldWithIntentBasedNavigation'}">
+											<Text text="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}], 
+											formatter: 'zvui.work.controller.AnnotationHelper.getColumnHeaderText'}"/>
+									</template:elseif>
+									<template:else>
+										<Text text="{i18n>APPLY}" wrapping="false"/>
+									</template:else>
+								</template:if>								
+							</Column>
+							</template:with>
+						</template:repeat>					
+					</columns>	 					
+					<items>
+						<ColumnListItem>
+							<cells>
+								<template:repeat list="{lineItems>}" var="dataField">
+									<template:if test="{= ${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataField'}">
+										<template:then>
+											<template:if test="{= ${dataField>Value/Path} === 'mtpct'}">
+												<template:then>
+													<microchart:RadialMicroChart size="S"
+													percentage="{path: 'dataField>Value', formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldValue'}">
+													</microchart:RadialMicroChart>
+												</template:then>
+												<template:elseif test="{= ${dataField>Value/Path} === 'adrln'}">
+													<Text text="{path: 'dataField>Value', formatter: 'zvui.work.controller.AnnotationHelper.getAddressDataFieldValue'}"/>
+												</template:elseif>
+												<template:else>
+													<Text text="{parts: [{path: 'entityType>'}, {path: 'dataField>'}], formatter: 'zvui.work.controller.AnnotationHelper.formatValue'}"/>
+												</template:else>
+											</template:if>
+										</template:then>
+										<template:elseif test="{= (${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataFieldForAction')}">
+											<Button icon="{= ${mqlfr} === 'X' ? 'sap-icon://accept' : 'sap-icon://status-completed'  }" press="onMatchResultAction"
+											type="{= ${mqlfr} === 'X' ? 'Emphasized': 'Default'  }">
+												<customData>
+													<core:CustomData key="Action"
+	                       							 value="{path: 'dataField>Action', formatter: 'sap.ui.model.odata.AnnotationHelper.format'}" />
+												</customData>
+											</Button>
+										</template:elseif>
+										<template:elseif test="{= (${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataFieldWithIntentBasedNavigation')}">
+											<Link press="onTableNavigationLinkClick" 
+												text="{path: 'dataField>Value', formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldValue'}">
+												<customData>
+													<core:CustomData key="FieldName"
+														value="{dataField>Value/Path}" />
+													<core:CustomData key="HREF"
+														value="{dataField>HREF/Path}" />
+													<core:CustomData key="QuickviewEnitity" 
+														value="{dataField>Quickview_Enitity/String}" />
+												</customData>
+											</Link>
+										</template:elseif>
+										<template:elseif test="{= ${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.CollectionField'}">
+											<VBox wrap="Wrap">
+												<template:with path="dataField>Fields" var="fields">
+													<template:if test="{= ${dataField>HideLabel/String} === 'X'}">
+														<template:then>
+															<template:repeat list="{fields>}" var="dataField1">
+																<template:with path="dataField1>Value"
+																	helper="sap.ui.model.odata.AnnotationHelper.resolvePath"
+																	var="dataFieldValue1">
+																		<Text text="{parts: [{path: 'entityType>'}, {path: 'dataField1>'}], formatter: 'zvui.work.controller.AnnotationHelper.formatValue'}"/>
+																</template:with>	
+															</template:repeat>	
+														</template:then>
+														<template:else>	
+															<smartForm:SmartForm editable="false" class="noPadding">
+																<!-- <smartForm:layout>
+																	<smartForm:ColumnLayout columnsM="2"
+																		columnsL="2" columnsXL="2" />
+																</smartForm:layout> -->
+																<smartForm:layoutData>
+																	<layout:GridData />
+																</smartForm:layoutData>
+														
+																<smartForm:Group>														
+															<template:repeat list="{fields>}" var="dataField1">
+																<template:with path="dataField1>Value"
+																	helper="sap.ui.model.odata.AnnotationHelper.resolvePath"
+																	var="dataFieldValue1">
+																	<!-- <HBox wrap="Wrap">
+																		<Text text="{parts: [{path: 'dataFieldValue1>'}, {path: 'dataField1>'}], 
+																			formatter: 'zvui.work.controller.AnnotationHelper.getColumnHeaderText'}"/>
+																		<Text text=":" class="sapUiTinyMarginEnd"/>
+																		<Text text="{path: 'dataField1>Value', formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldValue'}"/>
+																	</HBox> -->
+																	<smartForm:GroupElement>
+																		<smartField:SmartField value="{path: 'dataField1>Value', formatter: 'zvui.work.controller.AnnotationHelper.getDataFieldValue'}" 
+																			wrapping="{path: 'dataField1>', formatter: 'zvui.work.controller.AnnotationHelper.setMatchToolFieldWrapping'}" />
+																	</smartForm:GroupElement>
+																</template:with>	
+															</template:repeat>	
+															</smartForm:Group>												
+															</smartForm:SmartForm>
+														</template:else>
+													</template:if>
+												</template:with>
+											</VBox>
+										</template:elseif>
+									</template:if>
+								</template:repeat>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>			
+				</template:with>
+				<smartTable:layoutData>
+					<FlexItemData growFactor="1" />
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+
+			</uxap:ObjectPageSubSection>
+			</uxap:subSections>
+			</uxap:ObjectPageSection>
+			</uxap:sections>
+			</uxap:ObjectPageLayout>
+			<!-- </ScrollContainer> -->
+			<!-- </Panel>		 -->
+	<!-- </VBox> -->
+	</template:with>
+</core:FragmentDefinition>

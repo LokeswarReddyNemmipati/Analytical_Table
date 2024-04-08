@@ -1,0 +1,113 @@
+<core:FragmentDefinition
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:table="sap.ui.table"
+	xmlns="sap.m" xmlns:build="sap.build" xmlns:core="sap.ui.core"
+	xmlns:smc="sap.ui.comp.smartmicrochart"
+	xmlns:navpopover="sap.ui.comp.navpopover">
+	<!-- @classdesc @name: Name: sap.suite.ui.generic.template.ListReport.view.fragments.TableColumns.fragment.xml 
+		@description: Visualizes columns (header) of a responsive table, as part 
+		of a LR, OP or ALP. @param {UI.LineItem} [collection] @param {Edm.EntitySet} 
+		[listEntitySet] -->
+
+	<columns>
+		<!-- <template:if test="{listEntityType>vui.bodc.ResponsiveLineItem}"> 
+			<template:then> -->
+		<template:with
+			path="listEntityType>vui.bodc.ResponsiveLineItem"
+			var="lineItems1">
+			<template:repeat list="{lineItems1>}" var="dataField">
+
+				<template:if
+					test="{= ${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataField' || ${dataField>RecordType} === 'com.sap.vocabularies.UI.v1.DataFieldWithIntentBasedNavigation' || ${dataField>RecordType} === 'vui.bodc.DataFieldWithDrilldownNavigation' }">
+					<template:then>
+						<template:with path="dataField>Value"
+							helper="sap.ui.model.odata.AnnotationHelper.resolvePath"
+							var="dataFieldValue">
+							<Column
+								hAlign="{= ${dataField>EdmType} === 'Edm.Decimal' 
+								|| ${dataField>EdmType} === 'Edm.Double' || ${dataField>EdmType} === 'Edm.Float' 
+								|| ${dataField>EdmType} === 'Edm.Int16' || ${dataField>EdmType} === 'Edm.Int32' 
+								|| ${dataField>EdmType} === 'Edm.Int64' || ${dataField>EdmType} === 'Edm.Single' 
+								|| ${dataField>EdmType} === 'Edm.DateTime' || ${dataField>EdmType} === 'Edm.DateTimeOffset' 
+								|| ${dataField>EdmType} === 'Edm.Time' ||  ${dataField>ManualUnitField} ? 'End' : 'Begin'}"
+								visible="{= ( 
+								${dataField>com.sap.vocabularies.UI.v1.Hidden} || ( ${dataField>com.sap.vocabularies.Common.v1.FieldControl/EnumMember} 
+								=== 'com.sap.vocabularies.Common.v1.FieldControlType/Hidden')) ? 'false' 
+								: ( ${dataField>com.sap.vocabularies.UI.v1.Importance/EnumMember} === 'com.sap.vocabularies.UI.v1.ImportanceType/High' 
+								? 'true' : ( ${dataField>com.sap.vocabularies.UI.v1.Importance/EnumMember} 
+								=== 'com.sap.vocabularies.UI.v1.ImportanceType/Medium' &amp;&amp; ( ${device>/system/tablet} 
+								|| ${device>/system/desktop} ) ? 'true' : ${device>/system/desktop} ? 'true' 
+								: 'false' ) ) }"
+								minScreenWidth="{= ( ${dataField>com.sap.vocabularies.UI.v1.Importance/EnumMember} 
+								=== 'com.sap.vocabularies.UI.v1.ImportanceType/High' ? '' : ( ${dataField>com.sap.vocabularies.UI.v1.Importance/EnumMember} 
+								=== 'com.sap.vocabularies.UI.v1.ImportanceType/Medium' ? 'Tablet' : ( ${dataField>com.sap.vocabularies.UI.v1.Importance/EnumMember} 
+								=== 'com.sap.vocabularies.UI.v1.ImportanceType/Low' ? 'Small' : '' ) ) ) }"
+								demandPopin="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}], 
+													formatter: 'zvui.work.controller.AnnotationHelper.getDemandPopin'}"
+								build:metadata="#pattern:Column;staticProp::Importance:\{dataField>com.sap.vocabularies.UI.v1.Importance/EnumMember\};condition:collection>AnnotationType:vui.bodc.ResponsiveLineItem">
+								<customData>
+									<core:CustomData key="p13nData"
+										value="{parts: [{path: 'listEntitySet>'}, 
+										{path: 'dataFieldValue>'}, {path: 'dataField>'}], formatter: 'zvui.work.controller.AnnotationHelper.createP13N'}" />
+								</customData>
+								<Text
+									text="{parts: [{path: 'dataFieldValue>'}, {path: 'dataField>'}], 
+													formatter: 'zvui.work.controller.AnnotationHelper.getColumnHeaderText'}"
+									wrapping="false">
+								</Text>
+							</Column>
+						</template:with>
+					</template:then>
+					<template:else>
+						<Column hAlign="Begin" visible="true" 
+							minScreenWidth="Small"
+							demandPopin="false">
+							<customData>
+								<core:CustomData key="p13nData"
+									value="{parts: 
+										[{path: 'listEntitySet>'}, {path: 'dataField>'}], 
+										formatter: 'zvui.work.controller.AnnotationHelper.createP13NforStackColumn'}" />
+							</customData>
+							<Text
+								class="vistexMTableLabel"
+								text="{path: 'dataField>Label', formatter: 'sap.ui.model.odata.AnnotationHelper.format'}">
+							</Text>
+						</Column>
+					</template:else>
+				</template:if>
+
+			</template:repeat>
+		</template:with>
+		<template:if
+			test="{path: 'listEntitySet>', formatter:'zvui.work.controller.AnnotationHelper.showRowLevelFilterButton'}">		
+			<Column hAlign="Begin" 
+				visible="true" 
+				minScreenWidth="Small"
+				demandPopin="false">
+				<customData>
+					<core:CustomData key="p13nData"
+						value="{parts: [ {path: 'listEntityType>'} ], formatter: 'zvui.work.controller.AnnotationHelper.createP13NColumnForFilterAction'}" />
+				</customData>
+				<Text
+					class="vistexMTableLabel"
+					text="{i18n>ADDTOFILTER}">
+				</Text>
+			</Column>	
+		</template:if>
+		<Column hAlign="Begin" 
+			visible="true" 
+			minScreenWidth=""
+			popinDisplay="WithoutHeader"
+			demandPopin="false">
+			<customData>
+				<core:CustomData key="p13nData"
+					value="{parts: [ {path: 'listEntityType>'} ], formatter: 'zvui.work.controller.AnnotationHelper.createP13NColumnForDetails'}" />
+			</customData>
+			<Text
+				class="vistexMTableLabel"
+				text="">
+			</Text>
+		</Column>		
+	</columns>
+</core:FragmentDefinition>

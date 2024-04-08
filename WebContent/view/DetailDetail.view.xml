@@ -1,0 +1,21 @@
+<mvc:View controllerName="zvui.work.controller.DetailDetail"
+		xmlns:core="sap.ui.core" 
+		xmlns:mvc="sap.ui.core.mvc" 
+		xmlns="sap.m" 
+		displayBlock="true"
+		Id="detaildetail"
+		xmlns:html="http://www.w3.org/1999/xhtml">	
+	<Page showHeader="false"  enableScrolling="false">
+<!-- 	<customHeader>
+		<OverflowToolbar class="sapMTBNoBorders">
+			<ToolbarSpacer width="50px"/>
+			<Title text="{viewModel>/DetailDetailTitle}"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://action-settings" text="Modify Workspace" type="Transparent"/>
+		</OverflowToolbar>
+	</customHeader> -->
+	<content></content>
+	</Page>		
+	<!-- <App id="idDetailControl">
+	</App> -->
+</mvc:View>

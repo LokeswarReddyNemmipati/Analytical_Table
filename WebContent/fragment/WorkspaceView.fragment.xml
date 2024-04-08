@@ -1,0 +1,88 @@
+<core:FragmentDefinition
+	template:require="zvui.bwsm.controller.Helper zvui.bwsm.controller.AnnotationHelper"
+	xmlns="sap.m" height="100%" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout" xmlns:uxap="sap.uxap" xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:build="sap.build"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartList="sap.ui.comp.smartlist" xmlns:gridList="sap.f"
+	xmlns:grid="sap.ui.layout.cssgrid" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1"
+	xmlns:block="zvui.bwsm.fragment">
+
+	<Dialog contentWidth="500px" contentHeight="500px" resizable="true"
+		showHeader="false" draggable="true" afterClose="onDialogAfterClose">
+		<content>
+			<NavContainer>
+				<Page id="master" class="sapUiResponsivePadding--header" title="{i18n>NEWWRKSPC}"> <!-- title="Products" -->
+					<gridList:GridList class="margintop workspaceGridList">
+
+						<gridList:customLayout>
+							<grid:GridBoxLayout boxWidth="9.25rem" />
+						</gridList:customLayout>
+
+						<!-- <gridList:GridListItem>
+							<GenericTile backgroundImage="sap-icon://batch-payments"
+								frameType="OneByOne" sizeBehavior="Small" press="onTilePress">
+								<tileContent>document
+									<TileContent footer="{descr}">
+										<ImageContent src="sap-icon://batch-payments" />
+									</TileContent>
+								</tileContent>
+							</GenericTile>
+
+						</gridList:GridListItem> -->
+					</gridList:GridList>
+				</Page>
+				<Page id="detail" class="sapUiResponsivePadding--header"
+					showNavButton="true" title="{i18n>NEWWRKSPC}" navButtonPress="onNavBack">
+					<!-- title="Product" -->
+					<!-- <smartForm:SmartForm entityType="WorkspaceViewType"
+						editable="true">
+						<smartForm:layout> <layout:GridData span="L4 M4 S4" /> </smartForm:layout>
+						<smartForm:layout>
+							<smartForm:ColumnLayout columnsM="2"
+								columnsL="3" columnsXL="4" />
+						</smartForm:layout>
+						<smartForm:layoutData>
+							<layout:GridData />
+						</smartForm:layoutData>
+
+						<smartForm:Group>
+							<smartForm:GroupElement id="id1">
+								<smartField:SmartField value="{wspvw}" />
+							</smartForm:GroupElement>
+							<smartForm:GroupElement id="id2">
+								<smartField:SmartField value="{descr}" />
+							</smartForm:GroupElement>
+							<smartForm:GroupElement id="id3">
+								<smartField:SmartField value="{lytid}" />
+							</smartForm:GroupElement>
+							<smartForm:GroupElement id="id4">
+								<smartField:SmartField value="{shrng}"
+									fetchValueListReadOnly="true" />
+							</smartForm:GroupElement>
+						</smartForm:Group>
+					</smartForm:SmartForm>
+					<smartFilterBar:SmartFilterBar id="smartFilterBarEditPopup"
+						entitySet="WorkspaceView" filterBarExpanded="true" showGoOnFB="false"
+						showFilterConfiguration="false" initialise="onInitialise" search="onFilterSearch"
+						useToolbar="false" enableBasicSearch="false"
+						considerSelectionVariants="false">
+						<smartFilterBar:controlConfiguration>
+						</smartFilterBar:controlConfiguration>
+						<smartFilterBar:layoutData>
+							<FlexItemData shrinkFactor="0" />
+						</smartFilterBar:layoutData>
+					</smartFilterBar:SmartFilterBar> -->
+				</Page>
+			</NavContainer>
+		</content>
+		<beginButton>
+			<Button text="{i18n>CREATE}" type="Emphasized" enabled="{ui>/editable}" press="onCreateWorkspace" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>CANCEL}" type="Transparent" press="onWorkspaceAddDialogClose" />
+		</endButton>
+	</Dialog>
+
+</core:FragmentDefinition>

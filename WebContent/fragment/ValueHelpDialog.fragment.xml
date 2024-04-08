@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1" xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:st="sap.ui.comp.smarttable" xmlns:table="sap.ui.table"
+	xmlns:valuehelpdialog="sap.ui.comp.valuehelpdialog" xmlns:uxap="sap.uxap">
+	
+	<valuehelpdialog:ValueHelpDialog 	
+		ok=".onValueHelpOkPress"
+		cancel=".onValueHelpCancelPress"
+		afterClose=".onValueHelpAfterClose"
+		supportRanges="false"
+		supportRangesOnly="false"
+		supportMultiselect="false"
+		tokenDisplayBehaviour="descriptionAndId"
+		class= "sapUiSizeCompact">
+		<!-- key="extid"
+		keys="['extid']"
+		descriptionKey="descr" -->
+		
+		<valuehelpdialog:filterBar>
+		<smartFilterBar:SmartFilterBar 
+		  search="onValueHelpSearch" basicSearchFieldName="extid" enableBasicSearch="true" 
+			advancedMode="true" entitySet="{viewModel>/valueHelpEntity}">
+		</smartFilterBar:SmartFilterBar>
+		</valuehelpdialog:filterBar>
+		<!-- <st:SmartTable id="valueHelptable" smartFilterId="valueHelpFilter" 
+		tableType= "Table" useVariantManagement="false" showRowCount="false"
+		showTablePersonalisation="false" useExportToExcel="false" enableAutoBinding="true"
+		requestAtLeastFields="mtrnr extid descr mtrtp_descr mtrct_descr mtsts_descr"
+		entitySet="{viewModel>/valueHelpEntity}">
+		</st:SmartTable> -->
+	</valuehelpdialog:ValueHelpDialog>
+	
+</core:FragmentDefinition>

@@ -1,0 +1,89 @@
+<core:View height="100%" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:tnt="sap.tnt" xmlns:layout="sap.ui.layout" xmlns:smarttable="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:gridList="sap.f"
+	xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="zvui.work.controller.Worklist">
+	<Page showHeader="false">
+		<!-- <customHeader> <OverflowToolbar> <content> <ToolbarSpacer /> <Title 
+			text="{descr}" level="H3" titleStyle="H3" /> <ToolbarSpacer /> <ToolbarSpacer 
+			/> <ToolbarSpacer /> <ToolbarSpacer /> <ToolbarSpacer /> <ToolbarSpacer /> 
+			</content> </OverflowToolbar> </customHeader> -->
+		<content>
+			<Panel><!-- class="sapUiSmallMargin" -->
+				<gridList:GridList id="ItemsST" items="{to_WorkspaceView}"><!-- class="margintop" -->
+					<gridList:customLayout>
+						<grid:GridBoxLayout boxWidth="14rem" />
+					</gridList:customLayout>
+					<CustomListItem press="onItemPress"
+						modelContextChange="onModelContextChange" type="Active"><!-- class="setItemWidth" -->
+
+						<OverflowToolbar>
+							<Title titleStyle="H6" text="{descr}" />
+							<ToolbarSpacer />
+							<!-- <ToolbarSeparator>
+								<layoutData>
+									<OverflowToolbarLayoutData priority="AlwaysOverflow" />
+								</layoutData>
+							</ToolbarSeparator>
+							<Button icon="sap-icon://edit" type="Transparent" press="onWorkspaceEdit"
+								tooltip="{i18n>EDIT}" text="{i18n>EDIT}">
+								<layoutData>
+									<OverflowToolbarLayoutData priority="AlwaysOverflow" />
+								</layoutData>
+							</Button>
+							<Button icon="sap-icon://delete" type="Transparent" press="onWorkspaceDelete"
+								tooltip="{i18n>DELETE}" text="{i18n>DELETE}">
+								<layoutData>
+									<OverflowToolbarLayoutData priority="AlwaysOverflow" />
+								</layoutData>
+							</Button> -->
+						</OverflowToolbar>
+						<VBox renderType="Bare" alignItems="Center" justifyContent="SpaceBetween">
+							<VBox class="sapUiTinyMargin WSCardMinWidth" width="90%">
+
+							</VBox>
+						</VBox>
+					</CustomListItem>
+
+					<!-- <gridList:customLayout> <grid:GridBoxLayout boxWidth="14rem" /> 
+						</gridList:customLayout> <gridList:GridListItem class="noPaddingNoBorder" 
+						modelContextChange="onModelContextChange"> <VBox> <GenericTile header="{descr}" 
+						frameType="OneByOne" class="setGenericChartHeight"> <tileContent> <TileContent> 
+						<content> <FlexBox> <items> <Carousel loop="true" width="194px" arrowsPlacement="PageIndicator"> 
+						</Carousel> </items> </FlexBox> </content> </TileContent> </tileContent> 
+						</GenericTile> </VBox> <OverflowToolbar design="Solid" class="toolbarBorder"> 
+						<ToolbarSpacer /> <Button icon="sap-icon://edit" type="Transparent" press="onWorkspaceEdit" 
+						/> <Button icon="sap-icon://delete" type="Transparent" press="onWorkspaceDelete" 
+						/> <Button icon="sap-icon://navigation-right-arrow" type="Transparent" press="onItemPress" 
+						/> </OverflowToolbar> </gridList:GridListItem> -->
+					<gridList:headerToolbar>
+
+						<OverflowToolbar design="Transparent" height="50px" width="100%">
+							<content>
+								<Title text="{descr}" level="H3" titleStyle="H3" />
+								<ToolbarSpacer />
+								<SearchField placeholder="{i18n>SEARCHWORKSPACE}" search="onWorkspaceSearch"
+								width="300px"/>
+								<Button icon="sap-icon://add" tooltip="{i18n>ADD}" type="Transparent"
+									press="onAdd"/>
+							</content>
+						</OverflowToolbar>
+					</gridList:headerToolbar>
+
+				</gridList:GridList>
+			</Panel>
+		</content>
+		<!-- <FlexBox justifyContent="Center"> <items> <smartList:SmartList id="ItemsST" 
+			listType="List" enableAutoBinding="true" height="100%" width="70%" header="Workspaces" 
+			entitySet="WorkspaceView" listBindingPath="to_WorkspaceView"> <smartList:listItemTemplate> 
+			<InputListItem press="onItemPress" type="Navigation" label="{descr}"> <content> 
+			<Button icon="sap-icon://edit" type="Transparent" press="onWorkspaceEdit"/> 
+			<Button icon="sap-icon://sys-cancel" type="Transparent" press="onWorkspaceDelete"/> 
+			</content> </InputListItem> </smartList:listItemTemplate> <OverflowToolbar 
+			design="Transparent" height="35px"> <content> <ToolbarSpacer/> <Button icon="sap-icon://add" 
+			tooltip="{i18n>ADD}" type="Transparent" press="onWorkspaceAdd"/> </content> 
+			</OverflowToolbar> </smartList:SmartList> </items> </FlexBox> -->
+
+	</Page>
+</core:View>
