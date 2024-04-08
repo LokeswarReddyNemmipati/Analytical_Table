@@ -3,6 +3,6 @@ if (!window.vistexWorkspaceConfig) {
 }
 
 function bcfg_fillVistexConfigVariables() {
-    vistexWorkspaceConfig.hcpDestination = "";
+    vistexWorkspaceConfig.hcpDestination = "https://usegsaplds4d.vistex.com";
     //    vistexWorkspaceConfig.serverUrl = "";
 }

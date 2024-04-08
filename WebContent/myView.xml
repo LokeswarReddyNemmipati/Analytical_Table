@@ -13,7 +13,7 @@
 	xmlns:wc="zvui.work.control"
 	xmlns:table="sap.ui.table"
 	xmlns:smartField="sap.ui.comp.smartfield"
-	xmlns:smartmicrochart="sap.ui.comp.smartmicrochart" controllerName="zvui.work.controller.detailPage">
+	xmlns:smartmicrochart="sap.ui.comp.smartmicrochart" controllerName="zvui.work.controller.dynamicPage">
 	<Page showHeader="false">
 		<uxap:ObjectPageLayout id="detailobjectPage" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="true" headerContentPinnable="true" isChildPage="true" enableLazyLoading="true" showHeaderContent="{= ${viewModel>/showDetailClose}}" toggleHeaderOnTitleClick="{= ${viewModel>/showDetailClose}}" showFooter="{= ${viewModel>/showDetailClose}}" upperCaseAnchorBar="false" flexEnabled="true" navigate="onSectionChange" useIconTabBar="true">
 			<uxap:headerTitle>
@@ -127,16 +127,7 @@
 																	</table:RowAction>
 																</table:rowActionTemplate>
 																<table:columns>
-																	<!-- <table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="donum" leadingProperty="donum" 
-																	filterProperty="donum" visible="true">
-																		<table:customData>
-																			<core:CustomData key="p13nData" value="{'columnKey':'donum','leadingProperty':'donum', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'donum', 'filterProperty':'donum','columnIndex':'1'}" />
-																		</table:customData>
-																		<Label text="Object" />
-																		<table:template>
-																			<Text text="{donum}" wrapping="false" />
-																		</table:template>
-																	</table:AnalyticalColumn> -->
+																	
 																	<!-- <table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="edtst" leadingProperty="edtst" filterProperty="edtst" visible="true">
 																		<table:customData>
 																			<core:CustomData key="p13nData" value="{'columnKey':'edtst','leadingProperty':'edtst', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'edtst', 
@@ -155,9 +146,9 @@
 																		<Label text="Account Number" />
 																		<table:template>
 																			<Text text="{zaccnum}" wrapping="false" >
-																				<customData>
+																				<!-- <customData>
 																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
-																				</customData>
+																				</customData> -->
 																			</Text>
 																		</table:template>
 																	</table:AnalyticalColumn>
@@ -170,9 +161,9 @@
 																		<Label text="Affiliate" />
 																		<table:template>
 																			<Text text="{zaffil__wrk}" wrapping="false" >
-																				<customData>
+																				<!-- <customData>
 																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
-																				</customData>
+																				</customData> -->
 																			</Text>
 																		</table:template>
 																	</table:AnalyticalColumn>
@@ -244,9 +235,9 @@
 																		<Label text="Product type" />
 																		<table:template>
 																			<Text text="{zprodtype}" wrapping="false" >
-																				<customData>
+																				<!-- <customData>
 																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
-																				</customData>
+																				</customData> -->
 																			</Text>
 																		</table:template>
 																	</table:AnalyticalColumn>
@@ -258,9 +249,9 @@
 																		<Label text="Usage Type" />
 																		<table:template>
 																			<Text text="{zusetype__wrk}" wrapping="false" >
-																				<customData>
+																				<!-- <customData>
 																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
-																				</customData>
+																				</customData> -->
 																			</Text>
 																		</table:template>
 																	</table:AnalyticalColumn>
@@ -297,9 +288,9 @@
 																		<Label text="Assigned To" />
 																		<table:template>
 																			<Text text="{prcsr}" wrapping="false" >
-																				<customData>
+																				<!-- <customData>
 																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
-																				</customData>
+																				</customData> -->
 																			</Text>
 																		</table:template>
 																	</table:AnalyticalColumn>
@@ -310,9 +301,9 @@
 																		<Label text="Partner Determined" />
 																		<table:template>
 																			<Text text="{cl_ptr_dtrm__wrk}" wrapping="false" >
-																				<customData>
+																				<!-- <customData>
 																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
-																				</customData>
+																				</customData> -->
 																			</Text>
 																		</table:template>
 																	</table:AnalyticalColumn>
@@ -325,9 +316,9 @@
 																		<Label text="Source ISRC" />
 																		<table:template>
 																			<Text text="{zisrccode}" wrapping="false" >
-																				<customData>
+																				<!-- <customData>
 																					<core:CustomData key="style-class" value="{parts:[{path:'rowid_h'}], formatter:'zvui.work.controller.AnnotationHelper.checkIsChildControl'}" writeToDom="true"/>
-																				</customData>
+																				</customData> -->
 																			</Text>
 																		</table:template>
 																	</table:AnalyticalColumn>
@@ -361,6 +352,16 @@
 																			</Button>
 																		</table:template>
 																	</table:AnalyticalColumn> -->
+																	<table:AnalyticalColumn autoResizable="true" width="12.50em" sortProperty="row_id" leadingProperty="row_id" 
+																	filterProperty="row_id" visible="true">
+																		<table:customData>
+																			<core:CustomData key="p13nData" value="{'columnKey':'row_id','leadingProperty':'row_id', 'description':'' , 'displayBehaviour':'', 'navigationProperty':'', 'additionalProperty':'', 'sortProperty':'row_id', 'filterProperty':'row_id','columnIndex':'20'}" />
+																		</table:customData>
+																		<Label text="Row_id" />
+																		<table:template>
+																			<Text text="{row_id}" wrapping="false" />
+																		</table:template>
+																	</table:AnalyticalColumn>
 																</table:columns>
 															</table:AnalyticalTable>
 														</smartTable:SmartTable>
@@ -371,62 +372,66 @@
 												</layout:layoutData>
 											</layout:SplitPane>
 											<layout:SplitPane>
-												<Panel visible="false" class="noPadding">
-													<VBox class="vistexSideContent">
-														<HBox width="100%" class="noPadding" renderType="Bare">
-															<SegmentedButton id="to_X01::com.sap.vocabularies.UI.v1.LineItem::WS_DTV::DSC::SegButton" width="100%">
+											<Panel visible="false" class="noPadding" height="100%">
+													<VBox class="vistexSideContent" height="99%" width="99%">
+														<HBox width="100%" height="100%" class="noPadding" renderType="Bare">
+															<IconTabBar id="to_X01::com.sap.vocabularies.UI.v1.LineItem::WS_DTV::DSC::IconTab" applyContentPadding="false" select="onDSCSegmentedButtonChange" class="onDSCIconTabBar" tabDensityMode="Compact">
 																<items>
-																	<SegmentedButtonItem text="{i18n>DETAILS}" key="details" press="onDSCSegmentedButtonChange" />
-																	<SegmentedButtonItem text="{i18n>CODES}" key="codes" press="onDSCSegmentedButtonChange" />
-																	<SegmentedButtonItem text="{i18n>SUGGESTIONS}" key="match" press="onDSCSegmentedButtonChange" />
-																	<SegmentedButtonItem text="{i18n>NOTES}" key="notes" press="onDSCSegmentedButtonChange" />
+																	<IconTabFilter text="{i18n>DETAILS}" key="details" class="onDSCIconTabFilter">
+																		<OverflowToolbar height="auto" visible="{path: 'viewModel>/X01showDscApply', formatter: 'zvui.work.controller.AnnotationHelper.getDSCinfoBarVisible' }">
+																			<VBox class="sapMTB sapMListInfoTBar sapMTB-Info-CTX vistex-sideContent-TableTitle">
+																				<Label text="{viewModel>/infoToolbarText}" class="sapUiSelectable sapMLabelTBHeader sapMLabelMaxWidth sapMBarChild" />
+																			</VBox>
+																			<ToolbarSpacer />
+																			<Button type="Emphasized" press="onDscApply" text="{i18n>APPLY}" ></Button>
+																		</OverflowToolbar>
+																		<layout:Splitter height="100%" orientation="Vertical" width="100%">
+																			<Panel>
+																				<layoutData>
+																					<layout:SplitterLayoutData size="70%" />
+																				</layoutData>
+																				<Table id="to_X01::com.sap.vocabularies.UI.v1.LineItem::WS_DTV::DSC::Table" class="DSCDetailsTable vistexCompactStyle" rowHeight="19">
+																					<columns>
+																						<Column>
+																							<Text text="Field" />
+																						</Column>
+																						<Column>
+																							<Text text="Value" />
+																						</Column>
+																					</columns>
+																				</Table>
+																			</Panel>
+																			<Panel>
+																				<layoutData>
+																					<layout:SplitterLayoutData size="30%" />
+																				</layoutData>
+																			</Panel>
+																		</layout:Splitter>
+																	</IconTabFilter>
+																	<IconTabFilter text="{i18n>CODES}" key="codes" class="onDSCIconTabFilter">
+																		<ScrollContainer width="100%" height="100%" horizontal="false" vertical="true"></ScrollContainer>
+																	</IconTabFilter>
+																	<IconTabFilter text="{i18n>SUGGESTIONS}" key="match" class="onDSCIconTabFilter"></IconTabFilter>
+																	<IconTabFilter text="{i18n>NOTES}" key="notes" class="onDSCIconTabFilter">
+																		<ScrollContainer width="100%" height="100%" horizontal="false" vertical="true"></ScrollContainer>
+																	</IconTabFilter>
+																	<IconTabFilter text="{i18n>ADJUSTMENTS}" key="adjustments" class="onDSCIconTabFilter">
+																		<ScrollContainer width="100%" height="100%" horizontal="false" vertical="true"></ScrollContainer>
+																	</IconTabFilter>
+																	<IconTabFilter text="{i18n>DUPLICATES}" key="duplicates" class="onDSCIconTabFilter">
+																		<customData>
+																			<core:CustomData key="name" value="duplicates" />
+																		</customData>
+																		<ScrollContainer width="100%" height="100%" horizontal="false" vertical="true"></ScrollContainer>
+																	</IconTabFilter>
 																</items>
-															</SegmentedButton>
-															<Button type="Transparent" icon="sap-icon://decline" visible="true" press="onSelectAllToggle" tooltip="{i18n>CLEAR_SELECTION}">
+															</IconTabBar>
+															<Button type="Transparent" icon="sap-icon://decline" visible="true" press="onSelectAllToggle" tooltip="{i18n>CLOSE}" class="DscCloseButton">
 																<customData>
 																	<core:CustomData key="Action" value="SELECT_NONE" />
 																</customData>
 															</Button>
 														</HBox>
-														<OverflowToolbar height="auto">
-															<VBox direction="Row" width="100%" class="sapMTB sapMListInfoTBar sapMTB-Info-CTX vistex-sideContent-TableTitle" visible="{path: 'viewModel>/X01showDscApply', formatter: 'zvui.work.controller.AnnotationHelper.getDSCinfoBarVisible' }">
-																<Label text="" class="sapUiSelectable sapMLabelTBHeader sapMLabelMaxWidth sapMBarChild" />
-															</VBox>
-															<VBox class="sapMTB sapMListInfoTBar sapMTB-Info-CTX vistex-sideContent-TableTitle">
-																<Label text="" class="sapUiSelectable sapMLabelTBHeader sapMLabelMaxWidth sapMBarChild" />
-															</VBox>
-															<ToolbarSpacer />
-															<Button type="Emphasized" press="onDscApply" text="{i18n>APPLY}" visible="{path: 'viewModel>/X01showDscApply', formatter: 'zvui.work.controller.AnnotationHelper.getDSCinfoBarVisible' }" ></Button>
-														</OverflowToolbar>
-														<ScrollContainer width="100%" height="550px" horizontal="false" vertical="true">
-															<VBox id="to_X01::com.sap.vocabularies.UI.v1.LineItem::WSTZNW::DSC::IconTab" class="sapUiNoContentPadding">
-																<items>
-																	<Panel visible="{= (${viewModel>/DSCSegmentedButtonSelectedKey} === 'details')}" class="sapUiNoContentPadding">
-																		<content>
-																			<Table id="to_X01::com.sap.vocabularies.UI.v1.LineItem::WSTZNW::DSC::Table">
-																				<columns>
-																					<Column>
-																						<Text text="Field" />
-																					</Column>
-																					<Column>
-																						<Text text="Value" />
-																					</Column>
-																				</columns>
-																			</Table>
-																		</content>
-																	</Panel>
-																	<Panel visible="{= (${viewModel>/DSCSegmentedButtonSelectedKey} === 'codes')}" class="sapUiNoContentPadding">
-																		<content></content>
-																	</Panel>
-																	<Panel visible="{= (${viewModel>/DSCSegmentedButtonSelectedKey} === 'match')}" class="sapUiNoContentPadding">
-																		<content></content>
-																	</Panel>
-																	<Panel visible="{= (${viewModel>/DSCSegmentedButtonSelectedKey} === 'notes')}" class="sapUiNoContentPadding">
-																		<content></content>
-																	</Panel>
-																</items>
-															</VBox>
-														</ScrollContainer>
 													</VBox>
 												</Panel>
 											</layout:SplitPane>
@@ -438,24 +443,25 @@
 					</uxap:subSections>
 				</uxap:ObjectPageSection>
 			</uxap:sections>
-			<uxap:footer>
-				<OverflowToolbar visible="{parts: [{path: 'message>/'}, {path: 'viewModel>/modelChanged'}, {path: 'viewModel>/disp_only'}], formatter: 'zvui.work.controller.AnnotationHelper.getDetailPageFooterVisibility'}">
-					<Button id="messageButton" icon="sap-icon://alert" text="{parts:[{path: 'message>/'}], formatter: 'zvui.work.controller.AnnotationHelper.getFooterMessageButtonText'}" visible="{parts: [{path: 'message>/'}, {path: 'viewModel>/showDetailClose'}], formatter: 'zvui.work.controller.AnnotationHelper.getDetailFooterMessageButtonVisibility'}" type="Emphasized" press="onMessagePopover"/>
-					<core:InvisibleText id="showMessagesButtonInvisibleText" text="{i18n>MESSAGE_BUTTON_TYPE}" />
-					<ToolbarSpacer />
-					<Button type="Emphasized" text="Confirm Adjustment" enabled="{ui>/enabled}" press="onSave" visible="{= ${ui>/editable} &amp;&amp; ${viewModel>/modelChanged}}">
-						<customData>
-							<core:CustomData key="FImport" value="CNFRM_ADJ" />
-						</customData>
-					</Button>
-					<Button type="Emphasized" text="Save" enabled="{ui>/enabled}" press="onSave" visible="{= ${ui>/editable} &amp;&amp; ${viewModel>/modelChanged}}">
-						<customData>
-							<core:CustomData key="FImport" value="SAVE" />
-						</customData>
-					</Button>
-					<Button text="{i18n>CANCEL}" press="onCancel" enabled="{ui>/enabled}" visible="{= ${ui>/editable} &amp;&amp; ${viewModel>/modelChanged}}" />
-				</OverflowToolbar>
-			</uxap:footer>
+			<uxap:footer></uxap:footer>
 		</uxap:ObjectPageLayout>
+		<footer>
+			<OverflowToolbar visible="{parts: [{path: 'message>/'}, {path: 'viewModel>/modelChanged'}, {path: 'viewModel>/disp_only'}], formatter: 'zvui.work.controller.AnnotationHelper.getDetailPageFooterVisibility'}">
+				<Button id="messageButton" icon="sap-icon://alert" text="{parts:[{path: 'message>/'}], formatter: 'zvui.work.controller.AnnotationHelper.getFooterMessageButtonText'}" visible="{parts: [{path: 'message>/'}, {path: 'viewModel>/showDetailClose'}], formatter: 'zvui.work.controller.AnnotationHelper.getDetailFooterMessageButtonVisibility'}" type="Emphasized" press="onMessagePopover"/>
+				<core:InvisibleText id="showMessagesButtonInvisibleText" text="{i18n>MESSAGE_BUTTON_TYPE}" />
+				<ToolbarSpacer />
+				<Button type="Emphasized" text="SAVE_AS_RUN" enabled="{ui>/enabled}" press="onSave" visible="{= ${ui>/editable} &amp;&amp; ${viewModel>/modelChanged}}">
+					<customData>
+						<core:CustomData key="FImport" value="SAVE_AS_RUN" />
+					</customData>
+				</Button>
+				<Button type="Emphasized" text="SAV_RUN_N_REFR" enabled="{ui>/enabled}" press="onSave" visible="{= ${ui>/editable} &amp;&amp; ${viewModel>/modelChanged}}">
+					<customData>
+						<core:CustomData key="FImport" value="SAV_RUN_N_REFR" />
+					</customData>
+				</Button>
+				<Button text="{i18n>CANCEL}" press="onCancel" enabled="{ui>/enabled}" visible="{= ${ui>/editable} &amp;&amp; ${viewModel>/modelChanged}}" />
+			</OverflowToolbar>
+		</footer>
 	</Page>
 </mvc:View>

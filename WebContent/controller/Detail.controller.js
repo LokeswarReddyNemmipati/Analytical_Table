@@ -156,7 +156,7 @@ sap.ui.define([
 					viewModel.setProperty("/DetailTitle", descr);
 				}
 				var modelChanged = viewModel.getProperty("/modelChanged");
-				var currentRoute = viewModel.getProperty("/cuttentRoute");
+				var currentRoute = viewModel.getProperty("/currentRoute");
 				if (modelChanged && currentRoute == "Detail" && viewModel.getProperty("/onDetailDetailClose")) {
 					oController.noBackPlease();
 					viewModel.setProperty("/onDetailDetailClose", false);
@@ -205,7 +205,7 @@ sap.ui.define([
 
 			var oModel = oController.getOwnerComponent().getModel();
 			var modelChanged = viewModel.getProperty("/modelChanged");
-			var currentRoute = viewModel.getProperty("/cuttentRoute");
+			var currentRoute = viewModel.getProperty("/currentRoute");
 			if (modelChanged && currentRoute == "Detail" && viewModel.getProperty("/onDetailDetailClose")) {
 				oController.noBackPlease();
 				viewModel.setProperty("/onDetailDetailClose", false);
@@ -369,7 +369,7 @@ sap.ui.define([
 						if (url.split("$select=") && url.split("$select=")[1] && url.split("$select=")[1].split("&$orderby") && url.split("$select=")[1].split("&$orderby")[1]) {
 							var check = true;
 							for (var i = 0; i < url.split("$select=")[1].split("&$orderby")[0].split(",").length; i++) {
-								if (url.split("$select=")[1].split("&$orderby")[1].indexOf(url.split("$select=")[1].split("&$orderby")[i].split(",")[0]) > -1) {
+								if (url.split("$select=")[1].split("&$orderby")[1].indexOf(url.split("$select=")[1].split("&$orderby")[0].split(",")[i]) > -1) {
 								} else {
 									check = false;
 									break;

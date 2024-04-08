@@ -412,7 +412,7 @@ sap.ui.define([
 //			var currentSection = oController.getView().byId(currentSectionId);
 //			var dynamicSideContent = currentSection.getSubSections()[0].getBlocks()[0].getContent()[0];
 			var content;
-			var currentRoute = viewModel.getProperty("/cuttentRoute");
+			var currentRoute = viewModel.getProperty("/currentRoute");
 			var flexibleColumnLayout = oController.getOwnerComponent().getRootControl().byId("idAppControl");
 			if(currentRoute == "Detail"){
 				content = oController.getView();
@@ -878,7 +878,7 @@ sap.ui.define([
 						viewModel.setProperty("/preventHashChange",true);
 						var level = 0;
 						if(viewModel.getProperty("/currentDetailPageLevel") !== undefined &&
-								viewModel.getProperty("/cuttentRoute") !== "Detail"){
+								viewModel.getProperty("/currentRoute") !== "Detail"){
 							level = viewModel.getProperty("/currentDetailPageLevel");
 							level++;
 						}else{

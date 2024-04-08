@@ -3424,7 +3424,7 @@
 					return "{parts: [{path: 'viewModel>/sectionPopover'},{value:'" + listEntitySet.name +"'},{path: 'viewModel>/" + listEntitySet.name + "showingSideContent'},{value:'true'}], formatter: 'zvui.work.controller.AnnotationHelper.getColumnListType'}";
 				}else{
 					return "{parts: [{path: 'viewModel>/sectionPopover'},{value:'" + listEntitySet.name +"'},{path: 'viewModel>/" + listEntitySet.name + "showingSideContent'},{value:'false'}], formatter: 'zvui.work.controller.AnnotationHelper.getColumnListType'}";
-//					return "{parts: [{path: 'viewModel>/cuttentRoute'}], formatter: 'zvui.work.controller.AnnotationHelper.getTableNavigationVisible'}";
+//					return "{parts: [{path: 'viewModel>/currentRoute'}], formatter: 'zvui.work.controller.AnnotationHelper.getTableNavigationVisible'}";
 //					return false;
 				}
 			},
@@ -4093,7 +4093,7 @@
 
 			isTableNavigationVisible: function(listEntityType, listEntitySet){
 //				return "{parts: [{path: 'viewModel>/" + listEntitySet.name + "showingSideContent'}], formatter: 'zvui.work.controller.AnnotationHelper.getTableNavigationVisible'}";
-//				return "{parts: [{path: 'viewModel>/cuttentRoute'}], formatter: 'zvui.work.controller.AnnotationHelper.getTableNavigationVisible'}";
+//				return "{parts: [{path: 'viewModel>/currentRoute'}], formatter: 'zvui.work.controller.AnnotationHelper.getTableNavigationVisible'}";
 //				return false; //DrillDown button not required now. If required comment this line
 				if(!listEntityType["com.sap.vocabularies.UI.v1.Facets"]){
 //					return "{parts: [{path: 'viewModel>/" + listEntitySet.name + "showingSideContent'}], formatter: 'zvui.work.controller.AnnotationHelper.getTableNavigationVisible'}";
@@ -4106,7 +4106,7 @@
 					return true;
 				}else{
 //					return "{parts: [{path: 'viewModel>/" + listEntitySet.name + "showingSideContent'}], formatter: 'zvui.work.controller.AnnotationHelper.getTableNavigationVisible'}";
-//					return "{parts: [{path: 'viewModel>/cuttentRoute'}], formatter: 'zvui.work.controller.AnnotationHelper.getTableNavigationVisible'}";
+//					return "{parts: [{path: 'viewModel>/currentRoute'}], formatter: 'zvui.work.controller.AnnotationHelper.getTableNavigationVisible'}";
 					return false;
 				}
 			},

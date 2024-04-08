@@ -65,7 +65,7 @@ sap.ui.define([
 		    });
 //				sap.ui.getCore().byId("backBtn").mEventRegistry.press[0].fFunction = function() {
 //					var modelChanged = viewModel.getProperty("/modelChanged");
-//					var currentRoute = viewModel.getProperty("/cuttentRoute");
+//					var currentRoute = viewModel.getProperty("/currentRoute");
 //					if(currentRoute == "Detail" || currentRoute == "DetailDetail"){
 //						if(modelChanged) {
 //							history.go(-1);
@@ -102,14 +102,14 @@ sap.ui.define([
 			}
 			window.onhashchange = function() {
 				if(viewModel.getProperty("/insideWorkspaceApp")){
-					var currentRoute = viewModel.getProperty("/cuttentRoute");
+					var currentRoute = viewModel.getProperty("/currentRoute");
 					if(!viewModel.getProperty("/preventHashChange")){
 						if (window.innerDocClick != false && !window.launchpadBackTriggered) {
 							window.innerDocClick = false;
 						} else {
 							//Browser back button was clicked							
 							var modelChanged = viewModel.getProperty("/modelChanged");
-							var currentRoute = viewModel.getProperty("/cuttentRoute");
+							var currentRoute = viewModel.getProperty("/currentRoute");
 							if(currentRoute == "Detail" && !viewModel.getProperty("/detaildetailRoute")){
 								if(modelChanged) {
 	//								if(viewModel.getProperty("/backbuttonPressedView") !== "DetailDetail"){
@@ -472,7 +472,7 @@ sap.ui.define([
 			var dynamicSideContent = oController.getResponsiveSplitter(oSmartTable);
 			var bundle=oController.getOwnerComponent().getModel("i18n").getResourceBundle();
 			
-//			if(viewModel.getProperty("/cuttentRoute") == "DetailDetail" && modelChanged){
+//			if(viewModel.getProperty("/currentRoute") == "DetailDetail" && modelChanged){
 //				MessageBox.confirm(bundle.getText('CHANGESLOSTCONTINUE'), {
 //					title: bundle.getText('CONFIRM'),                                  
 //					actions: [MessageBox.Action.YES, MessageBox.Action.NO],
@@ -530,12 +530,12 @@ sap.ui.define([
 							oController.getView().getContent()[0]._handleDynamicTitlePress();
 						}
 						var replaceNavPath = false;
-						var currentRoute = viewModel.getProperty("/cuttentRoute");
+						var currentRoute = viewModel.getProperty("/currentRoute");
 						if(currentRoute == "DetailDetail"){
 							replaceNavPath = true;
 						}
 //						if(viewModel.getProperty("/currentDetailPageLevel") !== undefined &&
-//								viewModel.getProperty("/cuttentRoute") !== "Detail"){
+//								viewModel.getProperty("/currentRoute") !== "Detail"){
 //							level = viewModel.getProperty("/currentDetailPageLevel");
 //							level++;
 //						}else{

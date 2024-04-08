@@ -33,12 +33,12 @@ sap.ui.define([
 			if(sRouteName == "Worklist"){
 				oModel.setProperty("/showDetailClose",false);
 				oModel.setProperty("/showDetailDetailClose",false);
-				oModel.setProperty("/cuttentRoute","Worklist");
+				oModel.setProperty("/currentRoute","Worklist");
 				nextUiState = 0;
 			}else if(sRouteName == "Detail"){
 				oModel.setProperty("/showDetailClose",true);
 				oModel.setProperty("/showDetailDetailClose",false);
-				oModel.setProperty("/cuttentRoute","Detail");
+				oModel.setProperty("/currentRoute","Detail");
 				uiModel.setProperty("/showExpand", true);
 				nextUiState = 0;
 				var flexibleColumnLayout = this.getOwnerComponent().getRootControl().byId("idAppControl");
@@ -65,7 +65,7 @@ sap.ui.define([
 			}else if(sRouteName == "DetailDetail"){
 				oModel.setProperty("/showDetailClose",false);
 				oModel.setProperty("/showDetailDetailClose",true);
-				oModel.setProperty("/cuttentRoute",sRouteName);
+				oModel.setProperty("/currentRoute",sRouteName);
 				nextUiState = 1;
 				var flexibleColumnLayout = this.getOwnerComponent().getRootControl().byId("idAppControl");
 				if(flexibleColumnLayout && flexibleColumnLayout.getCurrentMidColumnPage() && flexibleColumnLayout.getCurrentMidColumnPage().getContent() &&
@@ -87,7 +87,7 @@ sap.ui.define([
 			}else if(sRouteName == "DetailDetail2"){
 				oModel.setProperty("/showDetailClose",false);
 				oModel.setProperty("/showDetailDetailClose",false);
-				oModel.setProperty("/cuttentRoute",sRouteName);
+				oModel.setProperty("/currentRoute",sRouteName);
 				nextUiState = 0;
 			}
 
